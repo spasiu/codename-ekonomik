@@ -1,4 +1,4 @@
-var User = function(){
+var User = function(params){
   this.name = params.name;
   this.email = params.email;
   this.id = params.id;
