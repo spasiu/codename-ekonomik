@@ -6,7 +6,7 @@ var app = express();
 app.use('view engine', 'ejs');
 
 
-require(./app/routes.js)(app);
+require('./app/routes.js')(app);
 
 app.listen(port);
 console.log('embark at port ' + port);
