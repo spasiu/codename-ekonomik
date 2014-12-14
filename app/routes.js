@@ -1,9 +1,3 @@
-//passport authentication example
-// app.post('/login', passport.authenticate('local', { 
-//   successRedirect: '/',
-//   failureRedirect: '/login' 
-// }));
-
 var pg = require('pg'), conString = "postgres://localhost/ekonomik-db";
 var items = require('repos/Items.js')(pg);
 
