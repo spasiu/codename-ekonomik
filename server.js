@@ -1,9 +1,10 @@
 var pg = require('pg'),
     ejs = require('ejs'),
-    express = require('express');
-
+    express = require('express'),
+    port = process.env.PORT || 8080;
+    
 var app = express();
-app.use('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 
 require('./app/routes.js')(app);
