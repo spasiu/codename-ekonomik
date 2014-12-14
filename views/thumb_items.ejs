@@ -1,0 +1,8 @@
+<% include header %>
+
+<% items.forEach(function(item) { %>
+  <img src='<%= item.imageLink %>'>
+  <p><%= item.description %></p>
+<% )} %>
+
+<% include footer %>
