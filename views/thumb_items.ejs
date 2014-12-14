@@ -8,7 +8,8 @@
     <% include header %>
 
     <div class="main">
-      <% items.forEach(function(item) { %>
+      <#% var userItems = [{description: "words", image_link: ""}] %>
+      <% userItems.forEach(function(item) { %>
         <img src='<%= item.image_link %>'>
         <p><%= item.description %></p>
       <% }); %>
