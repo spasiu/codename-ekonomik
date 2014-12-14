@@ -2,6 +2,8 @@
   "name": "ekonomix",
   "main": "server.js",
   "dependencies": {
-    ""
+    "express": "~4.0.0",
+    "ejs": "~0.8.5",
+    "pg": "~4.1.1"
   }
 }
