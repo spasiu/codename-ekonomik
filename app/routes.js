@@ -11,4 +11,9 @@ module.exports = function(app){
     response.render('index.ejs');
   });
 
+  
+  app.get('/items', function(request, response){
+    response.render('thumb_items.js');
+  });
+
 };
