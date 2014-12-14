@@ -1,5 +1,5 @@
 
-// var pg = require('pg'), conString = "postgres://something";
+// var pg = require('pg'), conString = "postgres://localhost/ekonomik-db";
 module.exports = function(pg){
   var createTable = function(callback){
     pg.connect(conString, function(err, client, done){
