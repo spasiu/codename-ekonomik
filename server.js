@@ -1,8 +1,8 @@
 var pg = require('pg'),
     ejs = require('ejs'),
     express = require('express'),
-    port = process.env.PORT || 8080;
-    
+    port = process.env.PORT || 3000;
+
 var app = express();
 app.set('view engine', 'ejs');
 
