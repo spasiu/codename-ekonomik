@@ -1,5 +1,4 @@
-var pg = require('pg'),
-    ejs = require('ejs'),
+var ejs = require('ejs'),
     express = require('express'),
     port = process.env.PORT || 3000;
 
