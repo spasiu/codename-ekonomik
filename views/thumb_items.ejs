@@ -7,9 +7,9 @@
   <body>
     <% include header %>
 
-    <div class="main"
+    <div class="main">
       <% items.forEach(function(item) { %>
-        <img src='<%= item.imageLink %>'>
+        <img src='<%= item.image_link %>'>
         <p><%= item.description %></p>
       <% )} %>
     </div>
