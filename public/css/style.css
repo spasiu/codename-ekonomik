@@ -1,0 +1,39 @@
+body {
+  background-color: #cbe86b;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  width: 100%;
+  height: 70px;
+  background-color: #f2e9e1;
+  border: 2px solid #cbe86b;
+  border-radius: 10%;
+}
+
+h1 {
+  margin-left: 45%;
+  color: #1C140D;
+}
+
+.main {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 800px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 1%;
+}
+
+footer {
+  clear: both;
+  width: 100%;
+  height: 70px;
+  background-color: #f2e9e1;
+  border: 2px solid #cbe86b;
+  border-radius: 10%;
+}
