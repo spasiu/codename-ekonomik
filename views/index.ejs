@@ -4,12 +4,33 @@
     <link type="text/css" href="../public/css/style.css" rel="stylesheet">
   </head>
   <body>
-    <header><h1><a href="/">BORROW IT</a></h1></header>
+    <% include header %>
+
     <div class="main">
+      <div class="center">
+        <form action="/users" method="get">
+          <div> Log In </div>
+          <input type="text" placeholder="Username">
+          <br>
+          <input type="text" placeholder="Password">
+          <br>
+          <input type="submit">
+        </form>
+
+        <form action="/users/new" method="post">
+          <div> Sign Up </div>
+          <input type="text" placeholder="Email">
+          <br>
+          <input type="text" placeholder="Password">
+          <br>
+          <input type="submit">
+        </form>
+      </div>
+
 
     </div>
 
-    <footer></footer>
+    <% include footer %>
 
   </body>
 </html>

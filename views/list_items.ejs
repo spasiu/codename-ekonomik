@@ -2,14 +2,15 @@
 <html>
   <head>
     <link type="text/css" href="../public/css/style.css" rel="stylesheet">
+    <link type="text/css" href="../public/css/list.css"
   </head>
 
   <body>
     <% include header %>
 
-    <div class="main"
+    <div class="main">
       <% items.forEach(function(item) { %>
-        <img src='<%= item.imageLink %>'>
+        <img src='<%= item.imageLink %>'> 
         <p><%= item.description %></p>
       <% )} %>
     </div>

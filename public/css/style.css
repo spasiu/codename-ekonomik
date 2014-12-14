@@ -37,3 +37,21 @@ footer {
   border: 2px solid #cbe86b;
   border-radius: 10%;
 }
+
+.center {
+  width: 320px;
+  height: 90px;
+  background-color: #F2E9E1;
+  margin: auto;
+  padding: 20px;
+  margin-left: 37%;
+  display: inline-block;
+  border-radius: 5%;
+  margin-top: 30px;
+  border: 2px solid #1C140D;
+}
+
+form {
+  padding-left: 15px;
+  display: inline-block;
+}
