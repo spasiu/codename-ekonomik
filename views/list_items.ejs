@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link type="text/css" href="../public/css/style.css" rel="stylesheet">
-    <link type="text/css" href="../public/css/list.css"
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/list.css" rel="stylesheet">
   </head>
 
   <body>
     <% include header %>
 
     <div class="main">
-      <% items.forEach(function(item) { %>
-        <img src='<%= item.imageLink %>'> 
-        <p><%= item.description %></p>
-      <% )} %>
+      <% userItems.forEach(function(item) { %>
+        <img src='<%= item.image_link %>'> 
+        <div class="about">
+          <p><h3><%= item.name %></h3></p>
+          <p><%= item.description %></p>
+        </div>
+        <hr>
+      <% }); %>
     </div>
 
     <% include footer %>

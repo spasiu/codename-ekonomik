@@ -1,4 +1,3 @@
-
 // var pg = require('pg'), conString = "postgres://something";
 module.exports = function(pg,conString){
   var createTable = function(callback){
