@@ -1,0 +1,60 @@
+CREATE TABLE users(
+  id SERIAL,
+  facebook_id INTEGER,
+  name TEXT,
+  email TEXT,
+  password TEXT,
+  PRIMARY KEY(id)
+);
+
+INSERT INTO users(facebook_id, name, email, password) VALUES(
+  '10204529752957908'
+  'Yer Mom', 
+  'yermom@yermomshouse.mom', 
+  'likesbeetles'
+);
+
+INSERT INTO users(name, email, password) VALUES('10204529752957907', 'The President', 'president@whitehouse.gov', 'hurrayformuffins');
+INSERT INTO users(name, email, password) VALUES('10204529752957909', 'Antonio', 'livraison@pizza.com', 'delicio');
+
+CREATE TABLE items(
+  id SERIAL,
+  name TEXT,
+  description TEXT,
+  image_link TEXT,
+  owner INTEGER REFERENCES users(id),
+  resides_at INTEGER REFERENCES users(id),
+  PRIMARY KEY(id)
+);
+
+INSERT INTO items(name, description, image_link, owner, resides_at) VALUES(
+  'a giant bilbo',
+  'a normal bilbo is quite hobbitish, but yer mom has a giant bilbo',
+  'http://www.ufunk.net/wp-content/uploads/2013/10/bilbo-martin-freeman-finger-15.jpg',
+  1,
+  1
+);
+
+INSERT INTO items(name, description, image_link, owner, resides_at) VALUES(
+  'the big red button',
+  'one of the perks of office is access to all the buttons including this big red one',
+  'http://a2.mzstatic.com/us/r30/Purple/v4/d4/4e/20/d44e209f-a84a-3145-278f-2332e4b85eca/screen320x480.jpeg',
+  2,
+  2
+);
+
+INSERT INTO items(name, description, image_link, owner, resides_at) VALUES(
+  'pizza',
+  'free pizza for other Italians. No Portuguese, Spaniards, Greeks or Scicilians. Thank you. Racism.',
+  'http://freshbabyshowers.com/qimages/6/pizza.jpg',
+  3,
+  3
+);
+
+CREATE TABLE requests(
+  id SERIAL,
+  item_id INTEGER REFERENCES items(id),
+  owner_id INTEGER REFERENCES items(id),
+  borrower_id INTEGER REFERENCES items(id),
+  status TEXT
+);
