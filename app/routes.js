@@ -12,7 +12,7 @@ module.exports = function(app){
   });
 
   app.get('/items', function(request, response){
-    response.render('list_items.ejs', {userItems: userItems});
+    response.render('thumb_items.ejs', {userItems: userItems});
   });
 
 };

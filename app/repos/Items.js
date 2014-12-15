@@ -8,6 +8,7 @@ module.exports = function(pg,conString){
           id SERIAL PRIMARY KEY\
           description TEXT,\
           owner INTEGER REFERENCES users (id) ON DELETE CASCADE,\
+          resides_at INTEGER REFERENCES users (id) ON DELETE CASCADE,\
           name TEXT,\
           image_link TEXT\
         );\
@@ -55,8 +56,8 @@ module.exports = function(pg,conString){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
-        INSERT INTO items (description, owner, name, image_link)\
-        VALUES ($1,$2,$3,$4)\
+        INSERT INTO items (description, owner, resides_at, name, image_link)\
+        VALUES ($1,$2,$2,$3,$4)\
         RETURNING id;\
       ";
 
@@ -104,10 +105,29 @@ module.exports = function(pg,conString){
     }); 
   };
 
+  var updateResidesAtFn = function(params, callback){
+    pg.connect(conString, function(err, client, done){
+      if(err) return console.log('error fetching client from pool', err);
+      var queryString = "\
+        UPDATE items *\
+        SET resides_at=$1\
+        WHERE id=$2;\
+      ";
+
+      client.query(queryString, [params.resides_at, params.id], function(err, result){
+        done();
+        if(err) return console.log('error running query', err);
+        callback(result.rows);
+        return;
+      });
+    }); 
+  };
+
   createTable();
 
   return {
     getAllForUserId : getAllForUserIdFn,
+    updateResidesAt : updateResidesAtFn
     deleteItem      : deleteItemFn,
     createItem      : createItemFn,
     getAll          : getAllFn

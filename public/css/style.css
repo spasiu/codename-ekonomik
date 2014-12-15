@@ -12,11 +12,12 @@ header {
   height: 70px;
   background-color: #f2e9e1;
   border: 2px solid #cbe86b;
-  border-radius: 10%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 h1 {
-  margin-left: 45%;
+  text-align: center;
   color: #1C140D;
 }
 
@@ -26,7 +27,7 @@ h1 {
   min-height: 800px;
   width: 100%;
   background-color: #ffffff;
-  border-radius: 1%;
+  border-radius: 10px;
 }
 
 footer {
@@ -35,7 +36,7 @@ footer {
   height: 70px;
   background-color: #f2e9e1;
   border: 2px solid #cbe86b;
-  border-radius: 10%;
+  border-radius: 10px;
 }
 
 .center {
