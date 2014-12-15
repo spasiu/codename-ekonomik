@@ -3,7 +3,7 @@ var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
 
-var auth = require('./auth.js');
+var auth = require('../auth.js');
 
 module.exports = function(app){
 
