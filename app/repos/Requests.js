@@ -39,7 +39,7 @@ module.exports = function(pg,conString){
       VALUES ($1,$2,$3,$4) \
       RETURNING id; \
     ";
-    dbQuery(callback, queryString, [params.item_id, params.owner_id, params.borrower_id]);
+    dbQuery(callback, queryString, [params.item_id, params.owner_id, params.borrower_id, "requested"]);
   };
 
   var changeRequestStatusFn = function(params, callback){
@@ -62,7 +62,8 @@ module.exports = function(pg,conString){
 
   var getByRequestIdFn = function(params, callback){
     var queryString = "\
-      SELECT * \
+      SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
+        items.description, items.name, items.resides_at, items.image_link \
       FROM requests \
       INNER JOIN items \
       ON requests.item_id = items.id \
@@ -73,7 +74,9 @@ module.exports = function(pg,conString){
 
   var getByOwnerIdFn = function(params, callback){
     var queryString = "\
-      SELECT * \
+      SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
+        items.description, items.name, items.resides_at, items.image_link, \
+        users.name, users.email \
       FROM requests \
       INNER JOIN items \
       ON requests.item_id = items.id \
@@ -86,7 +89,9 @@ module.exports = function(pg,conString){
 
   var getByBorrowerIdFn = function(params, callback){
     var queryString = "\
-      SELECT * \
+      SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
+        items.description, items.name, items.resides_at, items.image_link, \
+        users.name, users.email \
       FROM requests \
       INNER JOIN items \
       ON requests.item_id = items.id \
