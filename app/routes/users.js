@@ -7,6 +7,11 @@ var requests = require('../repos/Requests.js')(pg, conString);
 
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
+users.findOrCreate = function (id, callback) {
+  return callback("error message", this.getByFBID(id))
+}
+
+
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
