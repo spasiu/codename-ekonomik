@@ -7,8 +7,15 @@ CREATE TABLE users(
   PRIMARY KEY(id)
 );
 
+INSERT INTO users(facebook_id, name, email, password) VALUES (
+ '10152671773709842',
+  'Tessa',
+  'somehwere@somehwehrerer.com',
+  'doesnt'
+);
+
 INSERT INTO users(facebook_id, name, email, password) VALUES(
-  '10204529752957908'
+  '10204529752957908',
   'Yer Mom', 
   'yermom@yermomshouse.mom', 
   'likesbeetles'
