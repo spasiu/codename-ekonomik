@@ -132,7 +132,7 @@ module.exports = function(pg,conString){
 
   return {
     getAllForUserId : getAllForUserIdFn,
-    updateResidesAt : updateResidesAtFn
+    updateResidesAt : updateResidesAtFn,
     deleteItem      : deleteItemFn,
     createItem      : createItemFn,
     getAll          : getAllFn
