@@ -1,4 +1,4 @@
-var pg = require('pg'), conString = "postgres://localhost/ekonomik-db";
+var pg = require('pg'), conString = "pg://postgres:password@localhost/ekonomik-db";
 var items = require('./repos/Items.js')(pg, conString);
 
 module.exports = function(app){
