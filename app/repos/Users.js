@@ -5,12 +5,11 @@ module.exports = function(pg,conString){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
-        CREATE TABLE IF NOT EXISTS items (\
+        CREATE TABLE IF NOT EXISTS users (\
           id SERIAL PRIMARY KEY\
-          description TEXT,\
-          owner INTEGER REFERENCES users (id) ON DELETE CASCADE,\
           name TEXT,\
-          image_link TEXT\
+          email TEXT,\
+          password TEXT\
         );\
       ";
 
@@ -25,7 +24,7 @@ module.exports = function(pg,conString){
   var dropTable = function(callback){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
-      var queryString = "DROP TABLE items;"
+      var queryString = "DROP TABLE users;"
 
       client.query(queryString, function(err, result){
         done();
@@ -39,8 +38,8 @@ module.exports = function(pg,conString){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
-        SELECT *\
-        FROM items;\
+        SELECT name, email, id\
+        FROM users;\
       ";
 
       client.query(queryString, function(err, result){
@@ -52,16 +51,16 @@ module.exports = function(pg,conString){
     }); 
   };
 
-  var createItemFn = function(params, callback){
+  var newUserFn = function(params, callback){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
-        INSERT INTO items (description, owner, name, image_link)\
-        VALUES ($1,$2,$3,$4)\
+        INSERT INTO users (name, email, password)\
+        VALUES ($1,$2,$3)\
         RETURNING id;\
       ";
 
-      client.query(queryString, [params.description, params.owner, params.name, params.image_link], function(err, result){
+      client.query(queryString, [params.name, params.email, params.password], function(err, result){
         done();
         if(err) return console.log('error running query', err);
         callback(result.rows);
@@ -70,11 +69,11 @@ module.exports = function(pg,conString){
     }); 
   };
 
-  var deleteItemFn = function(params, callback){
+  var deleteUserFn = function(params, callback){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
-        DELETE FROM items\
+        DELETE FROM users\
         WHERE id=$1;\
       ";
 
@@ -87,16 +86,34 @@ module.exports = function(pg,conString){
     }); 
   };
 
-  var getAllForUserIdFn = function(params, callback){
+  var getByIdFn = function(params, callback){
     pg.connect(conString, function(err, client, done){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
         SELECT *\
-        FROM items\
-        WHERE owner=$1;\
+        FROM users\
+        WHERE id=$1;\
       ";
 
-      client.query(queryString, [params.owner], function(err, result){
+      client.query(queryString, [params.id], function(err, result){
+        done();
+        if(err) return console.log('error running query', err);
+        callback(result.rows);
+        return;
+      });
+    }); 
+  };
+
+  var getByNameFn = function(params, callback){
+    pg.connect(conString, function(err, client, done){
+      if(err) return console.log('error fetching client from pool', err);
+      var queryString = "\
+        SELECT *\
+        FROM users\
+        WHERE name=$1;\
+      ";
+
+      client.query(queryString, [params.name], function(err, result){
         done();
         if(err) return console.log('error running query', err);
         callback(result.rows);
@@ -108,9 +125,10 @@ module.exports = function(pg,conString){
   createTable();
 
   return {
-    getAllForUserId : getAllForUserIdFn,
-    deleteItem      : deleteItemFn,
-    createItem      : createItemFn,
-    getAll          : getAllFn
+    getById    : getByIdFn,
+    getByName  : getByNameFn,
+    deleteUser : deleteUserFn,
+    newUser    : newUserFn,
+    getAll     : getAllFn
   }
 };
