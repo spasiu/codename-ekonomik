@@ -1,5 +1,7 @@
 var ejs = require('ejs'),
     express = require('express'),
+    expressSession = require('express-session'),
+    passport = require('passport'),
     port = process.env.PORT || 3000;
 
 var app = express();
