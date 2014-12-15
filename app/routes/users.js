@@ -8,7 +8,9 @@ var requests = require('../repos/Requests.js')(pg, conString);
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
 users.findOrCreate = function (id, callback) {
-  return callback("error message", this.getByFBID(id))
+  console.log(id);
+  console.log(users.getByFBID(id))
+  return callback("User not authenticated", this.getByFBID(id))
 }
 
 
@@ -18,19 +20,20 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://localhost:3000/auth/facebook/callback" 
   },
   function(accessToken, refreshToken, profile, done) {
-    users.findOrCreate({ 'facebook.id': profile.id }, 
+    users.findOrCreate({ 'facebook_id': profile.id }, 
       function(err, user) {
-      if (err) { return done(err); }
+        // console.log(user)
       if (!user) {
-        user = new User({
+        user = users.newUser({
           name: profile.displayName,
-          email: profile.emails[0].value,
-          facbook: profile._json
+          // email: profile.emails[0].value,
+          email: "fake_email@email.com",
+          facebook: profile._json
         });
-        users.newUser(user);
-      } else {
-        return done(err, user);
+      } else if (user) {
+        return done(null, user);
       }
+      if (err) { return done(err); }
     });
   }
 ));
@@ -55,5 +58,5 @@ module.exports = function(app){
 
   app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', { successRedirect: '/', 
-                                        failureRedirect: '/login' }));
+                                        failureRedirect: '/' }));
 };
