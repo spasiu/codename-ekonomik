@@ -8,8 +8,14 @@ var auth = require('./auth.js');
 module.exports = function(app){
 
   var userItems = [{name: "Elephant", description: "test description", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg"},
-                    {name: "MacDougal", description: "I'm another elephant. Hi!", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Elephas_maximus_%28Bandipur%29.jpg/1280px-Elephas_maximus_%28Bandipur%29.jpg"}]
+                    {name: "MacDougal", description: "I'm another elephant. Hi!", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Elephas_maximus_%28Bandipur%29.jpg/1280px-Elephas_maximus_%28Bandipur%29.jpg"}];
   // userItems = items.getAllForUserId();
+
+  var userRequests = [{borrower: "Elphie", item: "hairdryer"},
+                      {borrower: "McSnazzie", item: "bedazzled pants"}];
+
+  var borrowed = [{name: "chainsaw", owner: "Gilligan"},
+                  {name: "speakers", owner: "Mikintosh"}]
 
   app.get('/', function(request, response){
     response.render('list_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
@@ -19,19 +25,8 @@ module.exports = function(app){
     response.render('thumb_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
 
-  app.post('/login', function(request, response){
-
-    auth(email, password, function(){
-      users.getByEmail(email, function(user){
-        if(user.password === password){
-          userId = user.id;
-          loggedIn = true;
-        }else{
-
-        }
-      });
-    });
-
+  app.get('/requests', function(request, response){
+    response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed})
   });
 
 };

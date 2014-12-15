@@ -16,9 +16,15 @@ header {
   border-bottom-left-radius: 10px;
 }
 
-h1, h3 {
+h1 {
   text-align: center;
   color: #1C140D;
+}
+
+.nav {
+  text-align: right;
+  color: #1c140d;
+  margin-right: 5px;
 }
 
 h3 {
