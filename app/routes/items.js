@@ -1,7 +1,7 @@
 var pg = require('pg'), conString = "pg://postgres:password@localhost/ekonomik-db";
-var users = require('./repos/Users.js')(pg, conString);
-var items = require('./repos/Items.js')(pg, conString);
-var requests = require('./repos/Requests.js')(pg, conString);
+var users = require('../repos/Users.js')(pg, conString);
+var items = require('../repos/Items.js')(pg, conString);
+var requests = require('../repos/Requests.js')(pg, conString);
 
 var auth = require('./auth.js');
 
