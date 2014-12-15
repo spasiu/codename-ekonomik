@@ -47,7 +47,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.item_id, params.owner_id, params.borrower_id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
@@ -67,7 +67,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id, params.status], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
@@ -85,7 +85,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
@@ -106,7 +106,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
@@ -129,7 +129,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.owner_id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
@@ -152,7 +152,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.borrower_id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) result.rows : null;
+        result.rows = (result.rows.length > 0) ? result.rows : null;
         callback(result.rows);
         return;
       });
