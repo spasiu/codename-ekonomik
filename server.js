@@ -9,7 +9,9 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 
-require('./app/routes.js')(app);
+require('./app/routes/items.js')(app);
+require('./app/routes/users.js')(app);
+
 
 app.listen(port);
 console.log('embark at port ' + port);

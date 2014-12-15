@@ -1,6 +1,6 @@
 var pg = require('pg'), conString = "pg://postgres:password@localhost/ekonomik-db";
-var items = require('./repos/Items.js')(pg, conString);
 var users = require('./repos/Users.js')(pg, conString);
+var items = require('./repos/Items.js')(pg, conString);
 var requests = require('./repos/Requests.js')(pg, conString);
 
 var auth = require('./auth.js');
@@ -17,9 +17,6 @@ module.exports = function(app){
   var borrowed = [{name: "chainsaw", owner: "Gilligan"},
                   {name: "speakers", owner: "Mikintosh"}]
 
-  app.get('/', function(request, response){
-    response.render('thumb_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
-  });
 
   app.get('/items', function(request, response){
     response.render('list_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
@@ -36,11 +33,5 @@ module.exports = function(app){
   app.post('/items/new', function(request, response){
       // bodyParser middleware?
     });
-
-  app.get('/auth/facebook', passport.authenticate('facebook'));
-
-  app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/', 
-                                        failureRedirect: '/login' }));
 
 };
