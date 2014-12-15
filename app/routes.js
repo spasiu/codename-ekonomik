@@ -1,5 +1,9 @@
 var pg = require('pg'), conString = "pg://postgres:password@localhost/ekonomik-db";
 var items = require('./repos/Items.js')(pg, conString);
+var users = require('./repos/Users.js')(pg, conString);
+var requests = require('./repos/Requests.js')(pg, conString);
+
+var auth = require('./auth.js');
 
 module.exports = function(app){
 
@@ -13,6 +17,21 @@ module.exports = function(app){
 
   app.get('/items', function(request, response){
     response.render('thumb_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
+  });
+
+  app.post('/login', function(request, response){
+
+    auth(email, password, function(){
+      users.getByEmail(email, function(user){
+        if(user.password === password){
+          userId = user.id;
+          loggedIn = true;
+        }else{
+
+        }
+      });
+    });
+
   });
 
 };
