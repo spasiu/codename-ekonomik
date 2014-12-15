@@ -40,7 +40,7 @@ module.exports = function(pg,conString){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
         INSERT INTO requests (item_id, owner_id, borrower_id, status)\
-        VALUES ($1,$2,$3,requested)\
+        VALUES ($1,$2,$3,$4)\
         RETURNING id;\
       ";
 
