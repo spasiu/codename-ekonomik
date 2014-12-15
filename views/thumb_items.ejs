@@ -2,17 +2,24 @@
 <html>
   <head>
     <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/thumb.css" rel="stylesheet">
   </head>
 
   <body>
     <% include header %>
 
     <div class="main">
-      <#% var userItems = [{description: "words", image_link: ""}] %>
-      <% userItems.forEach(function(item) { %>
-        <img src='<%= item.image_link %>'>
-        <p><%= item.description %></p>
-      <% }); %>
+      <table>
+        <% userItems.forEach(function(item) { %>
+            <tr>
+              <td><div class="img_holder">
+                <img src='<%= item.image_link %>'>
+                <br>
+                <div class="item-name"><%= item.name %></div>
+              <div></td>
+            </tr>
+        <% }); %>
+      </table>
     </div>
 
     <% include footer %>
