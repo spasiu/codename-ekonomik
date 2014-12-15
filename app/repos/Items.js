@@ -46,6 +46,7 @@ module.exports = function(pg,conString){
       client.query(queryString, function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -64,6 +65,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.description, params.owner, params.name, params.image_link], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -81,6 +83,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -99,6 +102,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.owner], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -117,6 +121,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.resides_at, params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
