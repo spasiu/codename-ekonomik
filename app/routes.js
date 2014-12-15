@@ -8,11 +8,11 @@ module.exports = function(app){
   // userItems = items.getAllForUserId();
 
   app.get('/', function(request, response){
-    response.render('list_items.ejs', {userItems: userItems});
+    response.render('list_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
 
   app.get('/items', function(request, response){
-    response.render('thumb_items.ejs', {userItems: userItems});
+    response.render('thumb_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
 
 };

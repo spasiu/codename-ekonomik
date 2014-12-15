@@ -9,6 +9,10 @@
     <% include header %>
 
     <div class="main">
+      <br>
+      <h2 class="owner"><%= user %>'s Items</h2>
+      <% include switch_views %>
+      <br>
       <table>
         <% userItems.forEach(function(item) { %>
             <tr>
