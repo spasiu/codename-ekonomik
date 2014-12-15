@@ -45,6 +45,7 @@ module.exports = function(pg,conString){
       client.query(queryString, function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -63,6 +64,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.name, params.email, params.password], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -80,6 +82,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -98,6 +101,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
@@ -116,6 +120,7 @@ module.exports = function(pg,conString){
       client.query(queryString, [params.name], function(err, result){
         done();
         if(err) return console.log('error running query', err);
+        result.rows = (result.rows.length > 0) result.rows : null;
         callback(result.rows);
         return;
       });
