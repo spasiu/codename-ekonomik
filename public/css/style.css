@@ -1,5 +1,5 @@
 body {
-  background-color: #cbe86b;
+  background-color: #000000;
 }
 
 a {
@@ -41,6 +41,7 @@ h3 {
   width: 100%;
   background-color: #ffffff;
   border-radius: 10px;
+  border: 2px solid #cbe86b;
 }
 
 footer {
@@ -80,4 +81,5 @@ form {
   background-color: #f2e9e1;
   border-radius: 5px;
   padding: 10px;
+  border: 2px solid #cbe86b;
 }
