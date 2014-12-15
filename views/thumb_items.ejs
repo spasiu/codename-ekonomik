@@ -15,7 +15,7 @@
       <br>
       <table>
         <% userItems.forEach(function(item) { %>
-            <tr>
+            <tr class="inline-row">
               <td><div class="img_holder">
                 <img src='<%= item.image_link %>'>
                 <br>
@@ -24,6 +24,8 @@
             </tr>
         <% }); %>
       </table>
+      <br><br>
+      <% include new_item %>
     </div>
 
     <% include footer %>

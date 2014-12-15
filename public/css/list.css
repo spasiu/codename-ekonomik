@@ -1,6 +1,5 @@
 .about {
   padding: 20px;
-  /*position: fixed;*/
   margin-left: 220px;
   min-height: 200px;
 }
@@ -10,4 +9,5 @@ img {
   max-width: 200px;
   max-height: 200px;
   padding: 20px;
+  border-radius: 10px;
 }

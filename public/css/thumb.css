@@ -16,7 +16,7 @@ img {
   background-color: #f2e9e1;
 }
 
-tr {
+.inline-row {
   display: inline-block;
 }
 

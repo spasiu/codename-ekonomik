@@ -18,15 +18,23 @@ module.exports = function(app){
                   {name: "speakers", owner: "Mikintosh"}]
 
   app.get('/', function(request, response){
-    response.render('list_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
-  });
-
-  app.get('/items', function(request, response){
     response.render('thumb_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
 
-  app.get('/requests', function(request, response){
-    response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed})
+  app.get('/items', function(request, response){
+    response.render('list_items.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
+
+  app.get('/requests', function(request, response){
+    response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed});
+  });
+
+  app.get('/items/new', function(request, response){
+      response.render('new_item_page.ejs');
+    });
+
+  app.post('/items/new', function(request, response){
+      // bodyParser middleware?
+    });
 
 };
