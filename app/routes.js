@@ -1,5 +1,5 @@
 var pg = require('pg'), conString = "postgres://localhost/ekonomik-db";
-var items = require('repos/Items.js')(pg);
+var items = require('./repos/Items.js')(pg, conString);
 
 module.exports = function(app){
 
