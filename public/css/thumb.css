@@ -1,0 +1,27 @@
+img {
+  max-width: 150px;
+  max-height: 100px;
+  display: block;
+  margin: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.img_holder {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #cbe86b;
+  display: block;
+  border-radius: 5px;
+  background-color: #f2e9e1;
+}
+
+tr {
+  display: inline-block;
+}
+
+.item-name {
+  margin: none;
+  padding: none;
+  text-align: center;
+}
