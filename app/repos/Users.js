@@ -93,6 +93,7 @@ module.exports = function(pg,conString){
     newUser     : newUserFn,
     getAll      : getAllFn,
     createTable : createTableFn,
-    dropTable   : dropTableFn
+    dropTable   : dropTableFn,
+    getByFBID   : getByFBIDFn
   }
 };
