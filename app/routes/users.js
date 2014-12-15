@@ -3,10 +3,6 @@ var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
 
-// users.prototype.findOrCreate = function (username) {
-//   var user = { }
-// }
-
 // var passport = require('../auth.js');
 
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
@@ -14,7 +10,7 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
-    callbackURL: "http://localhost:3000/auth/facebook/callback" // Note: For security reasons, the redirection URL must reside on the same host that is registered with Facebook.
+    callbackURL: "http://localhost:3000/auth/facebook/callback" 
   },
   function(accessToken, refreshToken, profile, done) {
     users.findOrCreate({ 'facebook.id': profile.id }, 
@@ -33,7 +29,7 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
-
+ 
 module.exports = function(app){
 
   var userItems = [{name: "Elephant", description: "test description", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg"},
