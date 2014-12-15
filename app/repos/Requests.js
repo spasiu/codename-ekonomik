@@ -40,11 +40,11 @@ module.exports = function(pg,conString){
       if(err) return console.log('error fetching client from pool', err);
       var queryString = "\
         INSERT INTO requests (item_id, owner_id, borrower_id, status)\
-        VALUES ($1,$2,$3,$4)\
+        VALUES ($1,$2,$3,requested)\
         RETURNING id;\
       ";
 
-      client.query(queryString, [params.item_id, params.from_id, params.to_id, params.status], function(err, result){
+      client.query(queryString, [params.item_id, params.owner_id, params.borrower_id], function(err, result){
         done();
         if(err) return console.log('error running query', err);
         callback(result.rows);
@@ -156,9 +156,11 @@ module.exports = function(pg,conString){
   createTable();
 
   return {
-    getByRequestId : getByIdFn,
-    deleteRequest  : deleteRequestFn,
-    newRequest     : newRequestFn,
-
+    newRequest          : newRequestFn,
+    changeRequestStatus : changeRequestStatusFn,
+    deleteRequest       : deleteRequestFn,
+    getByRequestId      : getByRequestIdFn,
+    getByOwnerId        : getByOwnerIdFn,
+    getByBorrowerId     : getByBorrowerIdFn
   }
 };
