@@ -24,12 +24,12 @@ module.exports = function(pg,conString){
         password TEXT \
       );\
     ";
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var dropTableFn = function(callback){
     var queryString = "DROP TABLE users;"
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var getAllFn = function(callback){
@@ -37,7 +37,7 @@ module.exports = function(pg,conString){
       SELECT name, email, id \
       FROM users; \
     ";
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var newUserFn =  function(params, callback){

@@ -25,12 +25,12 @@ module.exports = function(pg,conString){
         image_link TEXT \
       );\
     ";
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var dropTableFn = function(callback){
     var queryString = "DROP TABLE items;";
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var getAllFn = function(callback){
@@ -38,7 +38,7 @@ module.exports = function(pg,conString){
       SELECT * \
       FROM items; \
     ";
-    dbQuery(callback, queryString, [1]);
+    dbQuery(callback, queryString, []);
   };
 
   var createItemFn = function(params, callback){
