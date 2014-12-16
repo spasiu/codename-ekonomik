@@ -33,7 +33,6 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     } else {
       var userID;
-      var pageID = params['id'];
       Users.getByFBID(request.user, function(result) {
         userID = result[0].id;
         response.redirect('/user/' + userID + '/items');
