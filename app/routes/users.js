@@ -38,24 +38,35 @@ module.exports = function(app){
       );
 
   app.get('/items', function(request, response){
-    users.getByFBID(request.user[0], function(result) {
-        userID = result[0].id;
-          var pageOwner = result[0];
-          items.getAll(function(result){
-            response.render('all_items.ejs', {items: result, currentUser: pageOwner});
-          });
+    if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
+      response.redirect('/auth/facebook');
+    } else {
+      users.getByFBID(request.user[0], function(result) {
+      userID = result[0].id;
+      var pageOwner = result[0];
+      items.getAll(function(result){
+        response.render('all_items.ejs', {items: result, currentUser: pageOwner});
+        });
       });
+    }
   });
 
   app.get('/items/:id', function(request, response){
-    var itemID = request.params['id'];
-    items.getById({id: itemID}, function(result) {
-      response.render('item_detail.ejs', {item: result[0]});
-    })
+    if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
+      response.redirect('/auth/facebook');
+    } else { 
+      var itemID = request.params['id'];
+      items.getById({id: itemID}, function(result) {
+        response.render('item_detail.ejs', {item: result[0]});
+      })
+    }
   });
 
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       response.render('index.ejs');
