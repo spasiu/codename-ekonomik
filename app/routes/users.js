@@ -8,8 +8,8 @@ var requests = require('../repos/Requests.js')(pg, conString);
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
 users.findOrCreate = function (id, callback) {
-  this.getByFBID(id, callback);
-}
+  return callback("User not authenticated", this.getByFBID(id));
+};
 
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
