@@ -36,7 +36,7 @@ module.exports = function(app){
                                         failureRedirect: '/' }));
 
   app.get('/items', function(request, response){
-    Items.getAll(function(result){
+    items.getAll(function(result){
       response.render('all_items.ejs', {items: result});
     });
   });
@@ -57,7 +57,7 @@ module.exports = function(app){
       var pageID = params['id'];
       users.getByFBID(request.user, function(result) {
         userID = result[0].id;
-        Items.getAllForUserId({owner: pageID},function(result){
+        items.getAllForUserId({owner: pageID},function(result){
           response.render('user_items.ejs', {items: result, user: {id: pageID}, currentUser: {id: userID}});
         });
       });
@@ -81,10 +81,11 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
      } else {
       var userID;
+      console.log(request.user)
       users.getByFBID(request.user, function(result) {
         userID = result[0].id;
-        Requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
-          Requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
+        requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
+          requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
             response.render('requests.ejs', {
               myRequests: ownerRequests, 
               theirRequests: borrowerRequests
@@ -105,7 +106,7 @@ module.exports = function(app){
         userID = result[0].id;
         var itemID = params['id'];
         var ownerID = params['owner'];
-        Requests.newRequest({
+        requests.newRequest({
           item_id: itemID,
           borrower_id: userID,
           owner_id: ownerID,
@@ -132,7 +133,7 @@ module.exports = function(app){
           image_link: image, 
           owner: userID
         };
-        Items.createItem(newItem, function(){
+        items.createItem(newItem, function(){
           response.redirect('/items');
         });
       });
@@ -143,7 +144,7 @@ module.exports = function(app){
     if (!request.isAuthenticated()) { 
       response.redirect('/auth/facebook');
      } else {
-      Requests.changeRequestStatus({id: params.id, status: params.status}, function(result){
+      requests.changeRequestStatus({id: params.id, status: params.status}, function(result){
         response.send(result);
       });
      }
