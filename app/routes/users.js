@@ -48,8 +48,9 @@ module.exports = function(app){
   });
 
   app.get('/items/:id', function(request, response){
-    items.getById(request.params['id'], function(result) {
-      response.render('item_detail.ejs', {item: result})
+    var itemID = request.params['id'];
+    items.getById({id: itemID}, function(result) {
+      response.render('item_detail.ejs', {item: result[0]});
     })
   });
 
@@ -165,6 +166,18 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
      } else {
       requests.changeRequestStatus({id: request.params.id, status: request.body.status}, function(result){
+        response.send(result);
+      });
+     }
+  });
+
+  app.put('/items/:id', function(request, response){
+    if (!request.isAuthenticated()) { 
+      request.session.returnTo = request.path;
+      response.redirect('/auth/facebook');
+     } else {
+      console.log(request.body);
+      items.updateResidesAt({id: request.params.id, resides_at: request.body.resides_at}, function(result){
         response.send(result);
       });
      }
