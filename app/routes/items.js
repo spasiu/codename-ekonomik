@@ -13,6 +13,14 @@ module.exports = function(app){
     });
   });
 
+  app.get('/', function(request, response){
+    if (!request.isAuthenticated()) {
+      response.redirect('/auth/facebook');
+    } else {
+      response.render('index.ejs');
+    }
+  });
+
   app.get('/user/:id/items', function(request, response){
     if (!request.isAuthenticated()) {
       response.redirect('/auth/facebook');

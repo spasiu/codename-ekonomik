@@ -29,15 +29,6 @@ passport.use(new FacebookStrategy({
 
 module.exports = function(app){
 
-  app.get('/', function(request, response){
-    if (!request.isAuthenticated()) {
-      response.redirect('/auth/facebook');
-    } else {
-      console.log(request.user)
-      response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
-    }
-  });
-
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback', 
