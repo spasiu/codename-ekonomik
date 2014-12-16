@@ -6,6 +6,8 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script>
+
+    console.log('<%= currentUser.id %>');
     $(document).on('click', '.request-button', function(){
       var $that = $(this);
       var id = $that.data('id');
@@ -29,7 +31,7 @@
   <body>
     <% include header %>
     <div class="main">
-      <h2 class="owner">All Items</h2>
+      <h2 class="owner">All Items</h2><br>
 
       <table class="list-table">
         <tr>
@@ -40,7 +42,7 @@
           <th></th>
         </tr>
 
-        <% items.forEach(function(item) { if(currentUser == item.owner) { } else { %>
+        <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
 
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
