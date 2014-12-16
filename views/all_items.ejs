@@ -25,6 +25,11 @@
         }
       });
     });
+
+    $(document).on('click', 'tr.item-row', function(){
+      var id = $(this).data('id');
+      window.location.href = "/items/" + id;
+    });
     </script>
   </head>
 
@@ -44,7 +49,7 @@
 
         <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
 
-          <tr>
+          <tr class="item-row" data-id="<%= item.id %>">
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-name"><%= item.owner_name %></td>

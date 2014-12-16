@@ -97,8 +97,11 @@ footer {
   margin: 5px;
 }
 
-.fb-comments {
-  margin-left: 28%;
+.comments {
+  margin:auto;
+  display: block;
+  width: 600px;
+  text-align: center;
 }
 
 .image-large {
@@ -107,7 +110,25 @@ footer {
   margin: auto;
 }
 
+.item-about-extend .request-button {
+  padding: 10px;
+  margin: auto;
+  display: block;
+  width: 80px;
+  font-size: 14px;
+}
+
 .item-about-extend {
-  max-width: 400px;
-  margin-left: 30%;
+  width: 400px !important;
+  text-align: left;
+  margin: auto;
+}
+
+.item-row {
+  cursor: pointer;
+}
+
+.item-row:hover {
+  background-color: #222 !important;
+  color: white;
 }

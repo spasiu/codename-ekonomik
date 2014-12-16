@@ -21,6 +21,11 @@
           }
         });
       });
+
+      $(document).on('click', 'tr.item-row', function(){
+        var id = $(this).data('id');
+        window.location.href = "/items/" + id;
+      });
     </script>
   </head>
 
@@ -57,7 +62,7 @@
         </tr>
 
         <% items.forEach(function(item) { %>
-          <tr>
+          <tr class="item-row" data-id="<%= item.id %>">
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-description"><%= item.description %></td>
