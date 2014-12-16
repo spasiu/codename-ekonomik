@@ -7,7 +7,6 @@ module.exports = function(pg,conString){
       client.query(queryString, array, function(err, result){
         done();
         if(err) return console.log('error running query', err);
-        result.rows = (result.rows.length > 0) ? result.rows : null;
         if (callback) callback(result.rows);
         return;
       });
