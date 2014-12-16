@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/lib/jquery-2.1.1.min.js"></script>
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+     <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1511022942514049',
+          xfbml      : true,
+          version    : 'v2.2'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <% include header %>
+
+    <div class="main">
+      <h2 class="owner">All Items</h2><br>
+
+      <table class="list-table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Owner Name</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
+          <td class="list-item-name"><%= item.name %></td>
+          <td class="list-item-name"><%= item.owner_name %></td>
+          <td class="list-item-description"><%= item.description %></td>
+          <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
+        </tr>
+      </table>  
+
+      <br>
+
+    </div>
+
+    
+    <div class="comments">
+      <div class="fb-comments" data-href="http://localhost:3000/user/:id/items" data-numposts="5" data-colorscheme="light"></div>
+    </div>
+
+    <% include footer %>
+
+  </body>
+</html>

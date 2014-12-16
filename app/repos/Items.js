@@ -79,7 +79,7 @@ module.exports = function(pg,conString){
       FROM items \
       INNER JOIN users \
       ON items.owner=users.id \
-      WHERE id=$1; \
+      WHERE items.id=$1; \
     ";
     dbQuery(callback, queryString, [params.id]);
   };

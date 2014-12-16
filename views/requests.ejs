@@ -39,6 +39,18 @@
           $that.next('.accept-message').html("Accept failed.")
         }
       });
+      $.ajax({
+        url: '/item/' + id,
+        type: "PUT", 
+        data: {status: "loaned"} })
+      .done(function(result){
+        if (result){
+          $that.parent('.list-accept').html("Accepted!");
+        }
+        else {
+          $that.next('.accept-message').html("Accept failed.")
+        }
+      });
     });
     </script>
   </head>
@@ -64,7 +76,7 @@
             <td class="list-item-description"><%= item.owner_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-return">
-              <%- (item.status == 'loaned') ? "<button class='return-button' data-id='" + item.id + "'>Return Item</a> " : "" %>
+              <%- (item.status == 'loaned') ? "<button class='return-button' data-item='" + item.item_id + "'  data-id='" + item.id + "'>Return Item</a> " : "" %>
               <span class="return-message"></span>
             </td>
           </tr>
@@ -94,7 +106,7 @@
             <td class="list-item-description"><%= item.borrower_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-accept">
-              <%- (item.status == 'requested') ? "<button class='accept-button' data-id='" + item.id + "'>Accept Request</a>" : "" %>
+              <%- (item.status == 'requested') ? "<button class='accept-button' data-item='" + item.item_id + "' data-id='" + item.id + "'>Accept Request</a>" : "" %>
               <span class="accept-message"></span>
             </td>
           </tr>

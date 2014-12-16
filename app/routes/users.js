@@ -47,6 +47,12 @@ module.exports = function(app){
       });
   });
 
+  app.get('/items/:id', function(request, response){
+    items.getById(request.params['id'], function(result) {
+      response.render('item_detail.ejs', {item: result})
+    })
+  });
+
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
       response.redirect('/auth/facebook');
