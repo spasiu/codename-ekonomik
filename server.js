@@ -26,7 +26,7 @@ app.use(passport.session());
 app.set('view engine', 'ejs');
 
 
-require('./app/routes/items.js')(app);
+// require('./app/routes/items.js')(app);
 require('./app/routes/users.js')(app);
 
 
