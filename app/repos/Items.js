@@ -72,6 +72,18 @@ module.exports = function(pg,conString){
     dbQuery(callback, queryString, [params.owner]);
   };
 
+  var getByIdFn = function(params, callback){
+    var queryString = "\
+      SELECT items.id, items.description, items.name, items.resides_at, items.image_link, items.owner, \
+      users.name AS owner_name \
+      FROM items \
+      INNER JOIN users \
+      ON items.owner=users.id \
+      WHERE id=$1; \
+    ";
+    dbQuery(callback, queryString, [params.id]);
+  };
+
   var updateResidesAtFn = function(params, callback){
     var queryString = "\
       UPDATE items * \
@@ -90,6 +102,7 @@ module.exports = function(pg,conString){
     createItem      : createItemFn,
     getAll          : getAllFn,
     dropTable       : dropTableFn,
+    getById         : getByIdFn,
     createTable     : createTableFn
   }
 };
