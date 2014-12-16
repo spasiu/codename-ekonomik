@@ -67,7 +67,7 @@ footer {
 }
 
 .list-table tr:nth-child(even) {
-  background-color: #EEE;
+  background-color: #F9F9F9;
 }
 
 .item-image {

@@ -54,7 +54,8 @@
       <div class="item-about-extend">
         <div><%= item.description %></div>
         
-        <% if(currentUser.id != item.owner) { %>
+        <% if(currentUser.id != item.owner && requests.length == 0) { %>
+
           <br>
           <button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">
             Request

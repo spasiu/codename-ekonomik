@@ -47,9 +47,14 @@
         </tr>
 
         <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
-          <% requests.forEach(function(requests){
-
-            });
+          <% var match = false; 
+            requests.forEach(function(requests){
+              if (requests.item_id == item.id){
+                match=true;
+              }
+            }); 
+            if (!(match)) {
+            %>
 
           <tr class="item-row">
             <td class="list-item-img item-cell" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>
@@ -58,7 +63,7 @@
             <td class="list-item-description item-cell" data-id="<%= item.id %>"><%= item.description %></td>
             <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
-        <% } }); %>  
+        <% } } }); %>  
 
       </table>    
       <br>
