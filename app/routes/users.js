@@ -33,17 +33,22 @@ module.exports = function(app){
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/', 
-                                        failureRedirect: '/' }));
+    passport.authenticate('facebook', { successRedirect: 'back', 
+                                        failureRedirect: 'back' }));
 
   app.get('/items', function(request, response){
-    items.getAll(function(result){
-      response.render('all_items.ejs', {items: result});
-    });
+    users.getByFBID(request.user[0], function(result) {
+        userID = result[0].id;
+          var pageOwner = result[0];
+          items.getAll(function(result){
+            response.render('all_items.ejs', {items: result, currentUser: pageOwner});
+          });
+      });
   });
 
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       response.render('index.ejs');
@@ -61,7 +66,6 @@ module.exports = function(app){
         users.getById({id: pageID}, function(result){
           var pageOwner = result[0];
           items.getAllForUserId({owner: pageID},function(result){
-            console.log(result);
             response.render('user_items.ejs', {items: result, user: pageOwner, currentUser: {id: userID}});
           });
         });
