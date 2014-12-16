@@ -19,6 +19,7 @@ module.exports = function(pg,conString){
     var queryString = "\
       CREATE TABLE IF NOT EXISTS users ( \
         id SERIAL PRIMARY KEY, \
+        facebook_id TEXT, \
         name TEXT, \
         email TEXT, \
         password TEXT \
