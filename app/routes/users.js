@@ -49,7 +49,7 @@ module.exports = function(app){
 
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
-      response.send(401)
+      response.redirect('/auth/facebook');
     } else {
       console.log(request.user)
       response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
