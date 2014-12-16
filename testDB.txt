@@ -3,26 +3,23 @@ CREATE TABLE users(
   facebook_id TEXT,
   name TEXT,
   email TEXT,
-  password TEXT,
   PRIMARY KEY(id)
 );
 
-INSERT INTO users(facebook_id, name, email, password) VALUES (
+INSERT INTO users(facebook_id, name, email) VALUES (
  '10152671773709842',
   'Tessa',
-  'somehwere@somehwehrerer.com',
-  'doesnt'
+  'somehwere@somehwehrerer.com'
 );
 
-INSERT INTO users(facebook_id, name, email, password) VALUES(
+INSERT INTO users(facebook_id, name, email) VALUES(
   '10204529752957908',
   'Yer Mom', 
-  'yermom@yermomshouse.mom', 
-  'likesbeetles'
+  'yermom@yermomshouse.mom'
 );
 
-INSERT INTO users(facebook_id, name, email, password) VALUES('10204529752957907', 'The President', 'president@whitehouse.gov', 'hurrayformuffins');
-INSERT INTO users(facebook_id, name, email, password) VALUES('10204529752957909', 'Antonio', 'livraison@pizza.com', 'delicio');
+INSERT INTO users(facebook_id, name, email) VALUES('10204529752957907', 'The President', 'president@whitehouse.gov');
+INSERT INTO users(facebook_id, name, email) VALUES('10204529752957909', 'Antonio', 'livraison@pizza.com');
 
 CREATE TABLE items(
   id SERIAL,
