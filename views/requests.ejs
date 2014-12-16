@@ -4,40 +4,40 @@
     <link type="text/css" href="css/style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-    <script>
-    $(document).on('click', '.return-button', function(){
-      var $that = $(this);
-      var id = $that.data('id');
-      $.ajax({
-        url: '/requests/' + id,
-        type: "PUT", 
-        data: {status: "returned"} })
-      .done(function(result){
-        if (result){
-          $that.parent('.list-return').html("Return made.");
-        }
-        else {
-          $that.next('.return-message').html("Return could not be made!")
-        }
-      });
-    });
-    $(document).on('click', '.accept-button', function(){
-      var $that = $(this);
-      var id = $that.data('id');
-      $.ajax({
-        url: '/requests/' + id,
-        type: "PUT", 
-        data: {status: "returned"} })
-      .done(function(result){
-        if (result){
-          $that.parent('.list-accept').html("Accepted!");
-        }
-        else {
-          $that.next('.accept-message').html("Accept failed.")
-        }
-      });
-    });
-    </script>
+    // <script>
+    // $(document).on('click', '.return-button', function(){
+    //   var $that = $(this);
+    //   var id = $that.data('id');
+    //   $.ajax({
+    //     url: '/requests/' + id,
+    //     type: "PUT", 
+    //     data: {status: "returned"} })
+    //   .done(function(result){
+    //     if (result){
+    //       $that.parent('.list-return').html("Return made.");
+    //     }
+    //     else {
+    //       $that.next('.return-message').html("Return could not be made!")
+    //     }
+    //   });
+    // });
+    // $(document).on('click', '.accept-button', function(){
+    //   var $that = $(this);
+    //   var id = $that.data('id');
+    //   $.ajax({
+    //     url: '/requests/' + id,
+    //     type: "PUT", 
+    //     data: {status: "returned"} })
+    //   .done(function(result){
+    //     if (result){
+    //       $that.parent('.list-accept').html("Accepted!");
+    //     }
+    //     else {
+    //       $that.next('.accept-message').html("Accept failed.")
+    //     }
+    //   });
+    // });
+    // </script>
   </head>
 
   <body>
