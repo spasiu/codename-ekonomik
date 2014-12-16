@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/lib/jquery-2.1.1.min.js"></script>
     <link type="text/css" href="css/style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -29,24 +30,26 @@
     <% include header %>
     <div class="main">
       <h2 class="owner">All Items</h2>
-      <% include switch_views %>
 
       <table class="list-table">
         <tr>
           <th>Image</th>
           <th>Name</th>
+          <th>Owner Name</th>
           <th>Description</th>
           <th></th>
         </tr>
 
-        <% items.forEach(function(item) { %>
+        <% items.forEach(function(item) { if(currentUser == item.owner) { } else { %>
+
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
+            <td class="list-item-name"><%= item.owner_name %></td>
             <td class="list-item-description"><%= item.description %></td>
             <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
-        <% }); %>  
+        <% } }); %>  
 
       </table>    
       <br>
