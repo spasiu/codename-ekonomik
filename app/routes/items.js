@@ -13,6 +13,20 @@ module.exports = function(app){
     });
   });
 
+  app.get('/user/:id/items', function(request, response){
+    Items.getAllForUserId({owner: params["id"]},function(result){
+      response.render('list_items.ejs', {items: result});
+    });
+  });
+
+  app.get('/user/:id/requests', function(request, response){
+    Requests.getByOwnerId({owner_id: params["id"]}, function(ownerRequests){
+      Requests.getByOwnerId({owner_id: params["id"]}, function(ownerRequests){
+        
+      });
+    });
+  });
+
   // app.get('/requests', function(request, response){
   //   response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed});
   // });
@@ -25,6 +39,6 @@ module.exports = function(app){
   //     // bodyParser middleware?
   // });
 
-  
+
 
 };

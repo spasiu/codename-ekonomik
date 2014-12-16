@@ -21,8 +21,8 @@ INSERT INTO users(facebook_id, name, email, password) VALUES(
   'likesbeetles'
 );
 
-INSERT INTO users(name, email, password) VALUES('10204529752957907', 'The President', 'president@whitehouse.gov', 'hurrayformuffins');
-INSERT INTO users(name, email, password) VALUES('10204529752957909', 'Antonio', 'livraison@pizza.com', 'delicio');
+INSERT INTO users(facebook_id, name, email, password) VALUES('10204529752957907', 'The President', 'president@whitehouse.gov', 'hurrayformuffins');
+INSERT INTO users(facebook_id, name, email, password) VALUES('10204529752957909', 'Antonio', 'livraison@pizza.com', 'delicio');
 
 CREATE TABLE items(
   id SERIAL,

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <script>
+    $(document).on('click', '.request-button', function(){
+      var $that = $(this);
+      var id = $that.data('id');
+      var data = {
+        id: id
+      }
+      $.post('/requests', data, function(result){
+        if (result){
+          $that.parent('.list-request').html("Request made.");
+        }
+        else {
+          $that.next('.request-message').html("Request could not be made!")
+        }
+      });
+    });
+    </script>
+  </head>
+
+  <body>
+    <% include header %>
+    <div class="main">
+      <h2 class="owner"><%= user.name %>'s Items</h2>
+      <% include switch_views %>
+
+      <table class="list-table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+          <% if (<%= user.id %> == <%= currentUser.id %>){ %>
+            <th>Where is it?</th>
+          <% } %>
+        </tr>
+
+        <% items.forEach(function(item) { %>
+          <tr>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name"><%= item.name %></td>
+            <td class="list-item-description"><%= item.description %></td>
+            <% if (<%= user.id %> == <%= currentUser.id %>){ %>
+              <td class="list-item-name"><%= item.resides_at_name %></td>
+            <% } %>
+          </tr>
+        <% }); %>  
+
+      </table>
+            <% include new_item %>
+    
+      <br>
+
+    </div>
+
+    <% include footer %>
+
+  </body>
+</html>
