@@ -128,7 +128,7 @@ footer {
   cursor: pointer;
 }
 
-item-row:hover {
+.item-row:hover {
   background-color: #444 !important;
   color: white;
 }
