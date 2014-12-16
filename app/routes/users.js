@@ -61,6 +61,7 @@ module.exports = function(app){
         users.getById({id: pageID}, function(result){
           var pageOwner = result[0];
           items.getAllForUserId({owner: pageID},function(result){
+            console.log(result);
             response.render('user_items.ejs', {items: result, user: pageOwner, currentUser: {id: userID}});
           });
         });
@@ -130,8 +131,8 @@ module.exports = function(app){
         userID = result[0].id;
         var description = request.params['description'],
         name = request.params['name'],
-        image = request.params['image'],
-        newItem = {
+        image = request.params['image_link'];
+        var newItem = {
           description: description, 
           name: name, 
           image_link: image, 
