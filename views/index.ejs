@@ -6,11 +6,16 @@
     <script src="//connect.soundcloud.com/sdk.js"></script>
     <script>
       SC.initialize({
-        client_id: "915a66f6f6dede4c67ba815b10add67a",
-        redirect_uri: "http://example.com/callback.html",
+        client_id: '915a66f6f6dede4c67ba815b10add67a'
       });
-      SC.stream("/tracks/144197236", function(sound){
-        sound.play();
+
+      $(document).ready(function() {
+        SC.stream('/tracks/144197236', function(sound){
+          sound.start();
+          setTimeout(function(){
+            $('.loginHeader').fadeIn(10000);
+          }, 5000);
+        });
       });
     </script>
   </head>
@@ -36,8 +41,6 @@
       
     </div>
 
-
     <% include footer %>
-  
   </body>
 </html>

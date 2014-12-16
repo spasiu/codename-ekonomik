@@ -3,12 +3,14 @@ body {
   font: 16px serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#000, #222);
+  /*background: linear-gradient(#000, #222);*/
+  background-color: white;
   text-align: center;
 }
 
 .loginHeader {
   height: 700px;
+  display: none;
   background-image:url('../img/karl.jpg');
 }
 
