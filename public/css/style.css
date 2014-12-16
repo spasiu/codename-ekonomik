@@ -1,27 +1,9 @@
 body {
-  background-color: #ffffff;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-header {
-  width: 100%;
-  height: 70px;
-  background-color: #f2e9e1;
-  border: 2px solid #cbe86b;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.page-top {
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding-top: 0px;
-  color: #1C140D;
+  background-color: #EEE;
+  font: 14px Inconsolata;
+  /*letter-spacing: -1px;*/
+  margin: 0;
+  padding: 0;
 }
 
 .nav {
@@ -30,45 +12,17 @@ header {
   margin-right: 5px;
 }
 
-h3 {
-  margin-top: 0px;
-}
-
 .main {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  min-height: 800px;
-  width: 100%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  border: 2px solid #cbe86b;
+  margin: 30px;
+  padding: 15px;
+  background-color: white;
 }
 
 footer {
   clear: both;
   width: 100%;
   height: 70px;
-  background-color: #f2e9e1;
-  border: 2px solid #cbe86b;
   border-radius: 10px;
-}
-
-.center {
-  width: 320px;
-  height: 90px;
-  background-color: #F2E9E1;
-  margin: auto;
-  padding: 20px;
-  margin-left: 37%;
-  display: inline-block;
-  border-radius: 5%;
-  margin-top: 30px;
-  border: 2px solid #1C140D;
-}
-
-form {
-  padding-left: 15px;
-  display: inline-block;
 }
 
 .owner {
@@ -76,10 +30,70 @@ form {
   margin-bottom: 0px;
 }
 
-.add_new {
+.add-new {
   text-align: center;
-  background-color: #f2e9e1;
-  border-radius: 5px;
+  background-color: #444;
   padding: 10px;
-  border: 2px solid #cbe86b;
+  width: 400px;
+  margin: auto;
+  margin-top: 30px;
+  color: white;
+}
+
+.header {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 5px #BBB;
+  padding: 10px;
+  font: 25px serif;
+  font-weight: 800;
+  letter-spacing: -2px
+}
+
+.header a {
+  color: black;
+  text-decoration: none;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
+
+.header-nav {
+  text-align: right;
+}
+
+.list-table {
+  width: 100%;
+}
+
+.list-table tr:nth-child(even) {
+  background-color: #EEE;
+}
+
+.item-image {
+  max-width: 50px;
+  max-height: 50px;
+  margin: auto;
+}
+
+.list-item-img, .list-item-name {
+  text-align: center;
+}
+
+.list-item-name, .list-item-description {
+  padding: 15px;
+}
+
+.list-item-name {
+  font-weight: bold;
+}
+
+.add-form {
+  margin: auto;
+}
+
+.add-new button {
+  padding: 10px;
+  margin: 5px;
 }

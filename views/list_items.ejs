@@ -3,24 +3,35 @@
   <head>
     <link type="text/css" href="css/style.css" rel="stylesheet">
     <link type="text/css" href="css/list.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
     <% include header %>
-    <br>
     <div class="main">
-      <br>
-      <h2 class="owner"><%= user %>'s Items</h2>
+
+      <h2 class="owner">All Items</h2>
       <% include switch_views %>
-      <% userItems.forEach(function(item) { %>
-        <img src='<%= item.image_link %>'>
-        <div class="about">
-          <p><h3><%= item.name %></h3></p>
-          <p><%= item.description %></p>
-        </div>
-        <hr>
-      <% }); %>
+
+      <table class="list-table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+
+        <% items.forEach(function(item) { %>
+          <tr>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name"><%= item.name %></td>
+            <td class="list-item-description"><%= item.description %></td>
+          </tr>
+        <% }); %>  
+
+      </table>    
+
       <% include new_item %>
+
     </div>
 
     <% include footer %>

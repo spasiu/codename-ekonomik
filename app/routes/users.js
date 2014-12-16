@@ -11,7 +11,6 @@ users.findOrCreate = function (id, callback) {
   this.getByFBID(id, callback);
 }
 
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -46,8 +45,6 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-
- 
 module.exports = function(app){
 
   var userItems = [{name: "Elephant", description: "test description", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg"},
