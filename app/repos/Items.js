@@ -1,3 +1,4 @@
+// var pg = require('pg'), conString = "postgres://postgres:password@localhost/ekonomik-test-db";
 module.exports = function(pg,conString){
 
   var dbQuery = function(callback, queryString, array){

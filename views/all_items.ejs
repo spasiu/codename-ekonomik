@@ -29,6 +29,11 @@
       var id = $(this).data('id');
       window.location.href = "/items/" + id;
     });
+
+    $(document).on('click', '.owner-cell', function(){
+      var id = $(this).data('id');
+      window.location.href = "/user/" + id + "/items"; 
+    })
     </script>
   </head>
 
@@ -59,7 +64,7 @@
           <tr class="item-row">
             <td class="list-item-img item-cell" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name item-cell" data-id="<%= item.id %>"><%= item.name %></td>
-            <td class="list-item-name item-cell" data-id="<%= item.id %>"><%= item.owner_name %></td>
+            <td class="list-item-name owner-cell" data-id="<%= item.owner %>"><%= item.owner_name %></td>
             <td class="list-item-description item-cell" data-id="<%= item.id %>"><%= item.description %></td>
             <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
