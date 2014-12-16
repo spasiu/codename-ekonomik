@@ -1,5 +1,6 @@
-var domain = "https://intense-chamber-5849.herokuapp.com";
-var pg = require('pg'), conString = process.env.DATABASE_URL || "pg://postgres:password@localhost/ekonomik-db";
+var pg = require('pg');
+var conString = process.env.DATABASE_URL || "pg://postgres:password@localhost/ekonomik-db";
+var domain =  process.env.OUR_DOMAIN || "localhost:3000";
 var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
