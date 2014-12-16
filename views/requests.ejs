@@ -3,7 +3,7 @@
   <head>
     <script src="/lib/jquery-2.1.1.min.js"></script>
     <link type="text/css" href="css/style.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script>
 
@@ -71,7 +71,7 @@
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
-            <td class="list-item-description"><%= item.owner_name %></td>
+            <td class="list-item-name"><%= item.owner_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-return">
               <%- (item.status == 'loaned') ? "<button class='return-button'  data-owner='" + item.owner_id + "' data-item='" + item.item_id + "'  data-id='" + item.id + "'>Return Item</a> " : "" %>
@@ -101,7 +101,7 @@
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
-            <td class="list-item-description"><%= item.borrower_name %></td>
+            <td class="list-item-name"><%= item.borrower_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-accept">
               <%- (item.status == 'requested') ? "<button class='accept-button' data-borrower='" + item.borrower_id + "' data-item='" + item.item_id + "' data-id='" + item.id + "'>Accept Request</a>" : "" %>
