@@ -126,6 +126,7 @@ module.exports = function(app){
         if (!request.isAuthenticated()) {
       response.redirect('/auth/facebook');
     }else{
+      console.log("A PARAM!", request.body, "END PARAM!");
       var userID;
       users.getByFBID(request.user[0], function(result){
         userID = result[0].id;

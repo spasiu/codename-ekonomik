@@ -3,6 +3,7 @@ var ejs = require('ejs'),
     cookieParser = require('cookie-parser'),
     expressSession = require('express-session'),
     passport = require('passport'),
+    bodyParser = require('body-parser'),
     port = process.env.PORT || 3000;
 
 passport.serializeUser(function(user, done) {
@@ -17,7 +18,7 @@ var app = express();
 
 app.use(express.static('public'));
 app.use(cookieParser());
-// app.use(express.bodyParser());
+app.use(express.bodyParser());
 app.use(expressSession({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
