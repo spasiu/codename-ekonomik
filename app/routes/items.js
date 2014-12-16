@@ -22,8 +22,21 @@ module.exports = function(app){
       Users.getByFBID(request.user, function(result) {
         userID = result.id;
         Items.getAllForUserId({owner: pageID},function(result){
-          response.render('thumb_items.ejs', {items: result, user: {id: pageID}, currentUser: {id: userID}});
+          response.render('user_items.ejs', {items: result, user: {id: pageID}, currentUser: {id: userID}});
         });
+      });
+    }
+  });
+
+  app.get('/youritems', function(request, response){
+    if (!request.isAuthenticated()) {
+      response.redirect('/auth/facebook');
+    } else {
+      var userID;
+      var pageID = params['id'];
+      Users.getByFBID(request.user, function(result) {
+        userID = result.id;
+        response.redirect('/user/' + userID + '/items');
       });
     }
   });
@@ -38,10 +51,8 @@ module.exports = function(app){
         Requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
           Requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
             response.render('requests.ejs', {
-              requests: {
-                myRequests: ownerRequests, 
-                theirRequests: borrowerRequests
-              }
+              myRequests: ownerRequests, 
+              theirRequests: borrowerRequests
             });
           });
         });
