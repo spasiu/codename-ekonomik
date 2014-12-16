@@ -62,7 +62,7 @@
             <td class="list-item-description"><%= item.owner_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-return">
-              <%= (item.status == 'loaned') ? "<button class='return-button' data-id='<%= item.id %>'>Return Item</a>" %>
+              <%= (item.status == 'loaned') ? "<button class='return-button' data-id='<%= item.id %>'>Return Item</a> " : "" %>
               <span class="return-message"></span>
             </td>
           </tr>

@@ -13,18 +13,32 @@ module.exports = function(app){
     });
   });
 
-  app.get('/user/:id/items', function(request, response){
-    Items.getAllForUserId({owner: params["id"]},function(result){
-      response.render('list_items.ejs', {items: result});
-    });
+  app.get('/items', function(request, response){
+    if (!request.isAuthenticated()) {
+      response.redirect('/auth/facebook');
+    } else {
+      var userID;
+      Users.getByFBID(request.user, function(result) {
+        userID = result.id;
+        Items.getAllForUserId({owner: userID},function(result){
+          response.render('list_items.ejs', {items: result});
+        });
+      })
+    }
   });
 
-  app.get('/user/:id/requests', function(request, response){
-    Requests.getByOwnerId({owner_id: params["id"]}, function(ownerRequests){
-      Requests.getByOwnerId({owner_id: params["id"]}, function(ownerRequests){
-        
-      });
-    });
+  app.get('/requests', function(request, response){
+    if (!request.isAuthenticated()) { 
+      response.redirect('/auth/facebook');
+     } else {
+      var userID;
+      Users.getByFBID(request.user, function(result) {
+        userID = result.id;
+        Requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
+          response.render('requests.ejs', { myRequests: ownerRequests })
+        });
+      })
+     }
   });
 
   // app.get('/requests', function(request, response){

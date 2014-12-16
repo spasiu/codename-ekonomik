@@ -61,10 +61,10 @@ module.exports = function(pg,conString){
   var getAllForUserIdFn = function(params, callback){
     var queryString = "\
       SELECT items.id, items.description, items.name, items.resides_at, items.image_link, items.owner, \
-      users.name AS resides_at_name
+      users.name AS resides_at_name \
       FROM items \
-      INNER JOIN users
-      ON items.resides_at=users.id
+      INNER JOIN users \
+      ON items.resides_at=users.id \
       WHERE owner=$1; \
     ";
     dbQuery(callback, queryString, [params.owner]);
