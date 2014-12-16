@@ -92,7 +92,7 @@
             <td class="list-item-description"><%= item.borrower_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-accept">
-              <%= (item.status == 'requested') ? "<button class='accept-button' data-id='<%= item.id %>'>Accept Request</a>" %>
+              <%= (item.status == 'requested') ? "<button class='accept-button' data-id='<%= item.id %>'>Accept Request</a>" : "" %>
               <span class="accept-message"></span>
             </td>
           </tr>
