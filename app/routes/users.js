@@ -48,7 +48,11 @@ module.exports = function(app){
                   {name: "speakers", owner: "Mikintosh"}]
 
   app.get('/', function(request, response){
-    response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
+    if (!request.isAuthenticated()) {
+      redirect
+    } else {
+      response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
+    }
   });
 
   app.get('/auth/facebook', passport.authenticate('facebook'));
