@@ -9,21 +9,22 @@ module.exports = function(app){
 
   app.get('/items', function(request, response){
     Items.getAll(function(result){
-      response.render('list_items.ejs', {items: result});
+      response.render('all_items.ejs', {items: result});
     });
   });
 
-  app.get('/items', function(request, response){
+  app.get('/user/:id/items', function(request, response){
     if (!request.isAuthenticated()) {
       response.redirect('/auth/facebook');
     } else {
       var userID;
+      var pageID = params['id'];
       Users.getByFBID(request.user, function(result) {
         userID = result.id;
-        Items.getAllForUserId({owner: userID},function(result){
-          response.render('list_items.ejs', {items: result});
+        Items.getAllForUserId({owner: pageID},function(result){
+          response.render('thumb_items.ejs', {items: result, user: {id: pageID}, currentUser: {id: userID}});
         });
-      })
+      });
     }
   });
 
@@ -44,22 +45,35 @@ module.exports = function(app){
             });
           });
         });
-      })
+      });
      }
   });
 
-  // app.get('/requests', function(request, response){
-  //   response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed});
-  // });
 
-  // app.get('/items/new', function(request, response){
-  //     response.render('new_item_page.ejs');
-  // });
+  app.post('/requests', function(request, response){
+    if (!request.isAuthenticated()) {
+      response.redirect('/auth/facebook');
+    } else {
+      var userID;
+      Users.getByFBID(request.user, function(result) {
+        userID = result.id;
+        var itemID = params['id'];
+        var ownerID = params['owner'];
+        Requests.newRequest({
+          item_id: itemID,
+          borrower_id: userID,
+          owner_id: ownerID,
+        }, function(){});
+      });
+    }
+  });
 
-  // app.post('/items/new', function(request, response){
-  //     // bodyParser middleware?
-  // });
+  app.post('/items', function(request, response){
+    
+  });
 
-
+  app.put('/requests/:id', function(request, response){
+    
+  });
 
 };
