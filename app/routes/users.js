@@ -9,15 +9,12 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 
 users.findOrCreate = function (id, callback) {
   console.log(id);
-<<<<<<< HEAD
   console.log(users.getByFBID(id));
   return callback("User not authenticated", this.getByFBID(id));
 };
-=======
   console.log(users.getByFBID(id))
   return callback("User not authenticated", this.getByFBID(id))
 }
->>>>>>> 672f6293c2a3704df1c65546f535465f07b6008f
 
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,

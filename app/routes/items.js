@@ -13,16 +13,18 @@ module.exports = function(app){
     });
   });
 
-  app.get('/requests', function(request, response){
-    response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed});
-  });
+  // app.get('/requests', function(request, response){
+  //   response.render('requests.ejs', {userRequests: userRequests, borrowed: borrowed});
+  // });
 
-  app.get('/items/new', function(request, response){
-      response.render('new_item_page.ejs');
-  });
+  // app.get('/items/new', function(request, response){
+  //     response.render('new_item_page.ejs');
+  // });
 
-  app.post('/items/new', function(request, response){
-      // bodyParser middleware?
-  });
+  // app.post('/items/new', function(request, response){
+  //     // bodyParser middleware?
+  // });
+
+  
 
 };
