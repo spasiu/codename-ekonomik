@@ -99,16 +99,50 @@ module.exports = function(pg,conString){
     dbQuery(callback, queryString, [params.borrower_id]);
   };
 
+  var getByBorrowerAndItemFn = function(params, callback){
+    var queryString = "\
+      SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
+        items.description, items.name, items.resides_at, items.image_link, \
+        users.name AS owner_name, users.email \
+      FROM requests \
+      INNER JOIN items \
+      ON requests.item_id = items.id \
+      INNER JOIN users \
+      ON requests.owner_id = users.id \
+      WHERE requests.borrower_id=$1 AND $requests.item_id=$2 \
+      AND (requests.status='loaned' OR requests.status='requested'); \
+    ";
+    dbQuery(callback, queryString, [params.borrower_id, params.item_id]);
+  };
+
+  var getReturnedLoanedByBorrowerFn = function(params, callback){
+    var queryString = "\
+      SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
+        items.description, items.name, items.resides_at, items.image_link, \
+        users.name AS owner_name, users.email \
+      FROM requests \
+      INNER JOIN items \
+      ON requests.item_id = items.id \
+      INNER JOIN users \
+      ON requests.owner_id = users.id \
+      WHERE requests.borrower_id=$1 \
+      AND (requests.status='loaned' OR requests.status='requested'); \
+    ";
+    dbQuery(callback, queryString, [params.borrower_id]);
+  };
+
   createTableFn();
 
   return {
-    newRequest          : newRequestFn,
-    changeRequestStatus : changeRequestStatusFn,
-    deleteRequest       : deleteRequestFn,
-    getByRequestId      : getByRequestIdFn,
-    getByOwnerId        : getByOwnerIdFn,
-    getByBorrowerId     : getByBorrowerIdFn,
-    createTable         : createTableFn,
-    dropTable           : dropTableFn
+    newRequest                  : newRequestFn,
+    changeRequestStatus         : changeRequestStatusFn,
+    deleteRequest               : deleteRequestFn,
+    getByRequestId              : getByRequestIdFn,
+    getByOwnerId                : getByOwnerIdFn,
+    getByBorrowerId             : getByBorrowerIdFn,
+    createTable                 : createTableFn,
+    dropTable                   : dropTableFn,
+    getByBorrowerAndItem        : getByBorrowerAndItemFn,
+    getReturnedLoanedByBorrower : getReturnedLoanedByBorrowerFn
   }
 };

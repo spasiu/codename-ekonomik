@@ -47,6 +47,9 @@
         </tr>
 
         <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
+          <% requests.forEach(function(requests){
+
+            });
 
           <tr class="item-row">
             <td class="list-item-img item-cell" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>

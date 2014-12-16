@@ -1,6 +1,6 @@
 var pg = require('pg');
 var conString = process.env.DATABASE_URL || "pg://postgres:password@localhost/ekonomik-db";
-var domain =  process.env.OUR_DOMAIN || "localhost:3000";
+var domain =  process.env.OUR_DOMAIN || "http://localhost:3000";
 var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
@@ -10,7 +10,7 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
-    callbackURL: +"/auth/facebook/callback" 
+    callbackURL: domain + "/auth/facebook/callback" 
   },
   function(accessToken, refreshToken, profile, done) {
     users.getByFBID({ 'facebook_id': profile.id }, 
@@ -44,18 +44,19 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     } else {
       users.getByFBID(request.user[0], function(result) {
-      userID = result[0].id;
+        var user = result[0];
 
-      // FB.api(
-      //   "/v2.0/"+userID+"/friends?fields=id",
-      //   function(result) {
-      //     console.log(result.data[0].id)
-      //   })
+        // FB.api(
+        //   "/v2.0/"+userID+"/friends?fields=id",
+        //   function(result) {
+        //     console.log(result.data[0].id)
+        //   })
 
-      var pageOwner = result[0];
-      items.getAll(function(result){
-        response.render('all_items.ejs', {items: result, currentUser: pageOwner});
-        });
+        items.getAll(function(result){
+          requests.getReturnedLoanedByBorrower({borrower_id: user.id}, function(result2){
+            response.render('all_items.ejs', {items: result, currentUser: user, requests: result2});
+          });
+        })
       });
     }
   });
@@ -69,7 +70,9 @@ module.exports = function(app){
         var pageOwner = result[0];
         var itemID = request.params['id'];
         items.getById({id: itemID}, function(result) {
-          response.render('item_detail.ejs', {item: result[0], currentUser: pageOwner});
+          requests.getReturnedLoanedByBorrower({borrower_id: pageOwner.id, item_id: itemID}, function(result2){
+            response.render('item_detail.ejs', {item: result[0], currentUser: pageOwner, requests: result2});
+          });
         });
       });
     }
