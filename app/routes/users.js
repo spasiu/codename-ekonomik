@@ -126,7 +126,7 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     }else{
       var userID;
-      users.getFBID(request.user[0], function(result){
+      users.getByFBID(request.user[0], function(result){
         userID = result[0].id;
         var description = request.params['description'],
         name = request.params['name'],
