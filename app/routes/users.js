@@ -147,7 +147,7 @@ module.exports = function(app){
           owner: userID
         };
         items.createItem(newItem, function(){
-          response.redirect('/items');
+          response.redirect('/user/' + userID + '/items');
         });
       });
     }
