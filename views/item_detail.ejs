@@ -28,25 +28,14 @@
     <% include header %>
 
     <div class="main">
-      <h2 class="owner">All Items</h2><br>
-
-      <table class="list-table">
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Owner Name</th>
-          <th>Description</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
-          <td class="list-item-name"><%= item.name %></td>
-          <td class="list-item-name"><%= item.owner_name %></td>
-          <td class="list-item-description"><%= item.description %></td>
-          <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
-        </tr>
-      </table>  
-
+      <div class="image-large"><img class="image-large" src='<%= item.image_link %>'></div>
+      <h2 class="owner"><%= item.name %></h2><br>
+      <div class="item-about-extend">
+        <div><em>Owner: </em><%= item.owner_name %></div>
+        <div><em>About: </em><%= item.description %></div>
+        <br>
+        <button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span>
+      </div>
       <br>
 
     </div>
