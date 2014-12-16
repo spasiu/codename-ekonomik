@@ -11,16 +11,6 @@ users.findOrCreate = function (id, callback) {
   this.getByFBID(id, callback);
 }
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-  users.findByFBID(id, function(err, user) {
-    done(err, user);
-  });
-});
-
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
