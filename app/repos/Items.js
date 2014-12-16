@@ -34,8 +34,11 @@ module.exports = function(pg,conString){
 
   var getAllFn = function(callback){
     var queryString = "\
-      SELECT * \
-      FROM items; \
+      SELECT items.id, items.description, items.owner, items.resides_at, items.name, items.image_link, \
+        users.name AS owner_name \
+      FROM items \
+      INNER JOIN users \
+      ON users.id = items.owner; \
     ";
     dbQuery(callback, queryString, []);
   };
