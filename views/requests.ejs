@@ -6,6 +6,9 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script>
+
+    console.log("<%= theirRequests[0].image_link %>");
+
     $(document).on('click', '.return-button', function(){
       var $that = $(this);
       var id = $that.data('id');
@@ -75,7 +78,6 @@
 
     <div class="main">
       <h2 class="owner">Requests For Your Stuff</h2>
-      <% include switch_views %>
 
       <table class="list-table">
         <tr>
