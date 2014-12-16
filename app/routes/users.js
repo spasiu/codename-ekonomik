@@ -8,7 +8,7 @@ var requests = require('../repos/Requests.js')(pg, conString);
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
 users.findOrCreate = function (id, callback) {
-  return callback("User not authenticated", this.getByFBID(id));
+  return callback(id, this.getByFBID(id));
 };
 
 passport.use(new FacebookStrategy({
@@ -23,8 +23,8 @@ passport.use(new FacebookStrategy({
       if (!user) {
         user = users.newUser({
           name: profile.displayName,
-          // email: profile.emails[0].value,
-          email: "fake_email@email.com",
+          email: profile.emails[0].value,
+          // email: "fake_email@email.com",
           facebook: profile._json
         });
       } else if (user) {
@@ -49,8 +49,9 @@ module.exports = function(app){
 
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
-      redirect
+      response.send(401)
     } else {
+      console.log(request.user)
       response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
     }
   });
