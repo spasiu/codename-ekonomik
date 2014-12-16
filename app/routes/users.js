@@ -3,7 +3,7 @@ var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
 
-var auth = require('./auth.js');
+var auth = require('../auth.js');
 
 module.exports = function(app){
 
@@ -21,10 +21,10 @@ module.exports = function(app){
     response.render('index.ejs', {userItems: userItems, user: "Maximus the Parakeet"});
   });
 
-  app.get('/auth/facebook', passport.authenticate('facebook'));
+  // app.get('/auth/facebook', passport.authenticate('facebook'));
 
-  app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: '/', 
-                                        failureRedirect: '/login' }));
+  // app.get('/auth/facebook/callback', 
+  //   passport.authenticate('facebook', { successRedirect: '/', 
+  //                                       failureRedirect: '/login' }));
 
 };

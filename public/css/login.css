@@ -1,0 +1,76 @@
+body {
+  background-color: #EEE;
+  font: 16px serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(#444, #000);
+}
+
+.loginHeader {
+  height: 700px;
+  background-image:url('../img/karl.jpg');
+}
+
+
+.loginHeadline {
+  width: 100%;
+  /*background-color: black;*/
+  color: white;
+  text-align: center;
+  font-size: 140px;
+  font-weight: bold;
+  letter-spacing: -10px;
+  margin: 0;
+  padding: 0;
+  line-height: 95px;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+form {
+  text-align: left;
+  padding-left: 15px;
+  display: inline-block;
+}
+
+.loginCenter {
+  background-color: #DDD;
+  width: 450px;
+  margin: auto;
+  padding: 20px;
+  margin-top: 30px;
+  text-align: center;
+  position: relative; top: 280px;
+
+}
+
+.loginHeadline a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  line-height: 95px;
+}
+
+.login {
+  color: white;
+  padding:0;
+  margin:0;
+  font-size:80px;
+  line-height:60px;
+  letter-spacing: -5px;
+}
+
+input {
+  line-height: 1.5em;
+  font: inherit;
+  padding: 5px;
+}
+
+
+.loginButtons{
+  font: inherit;
+  padding: 5px;
+}
