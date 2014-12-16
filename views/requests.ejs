@@ -58,3 +58,68 @@
     <% include footer %>
   </body>
 </html>
+
+<html>
+  <head>
+    <link type="text/css" href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="css/list.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <% include header %>
+    <div class="main">
+
+      <h2 class="owner">Requests for Your Items</h2>
+      <% include switch_views %>
+
+      <table class="list-table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+
+        <% userRequests.forEach(function(item) { %>
+          <tr>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name"><%= item.name %></td>
+            <td class="list-item-description"><%= item.description %></td>
+          </tr>
+        <% }); %>  
+
+      </table>    
+
+      <% include new_item %>
+
+    </div>
+
+        <div class="main">
+
+      <h2 class="owner">Requests You've Made</h2>
+      <% include switch_views %>
+
+      <table class="list-table">
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+
+        <% borrowed.forEach(function(item) { %>
+          <tr>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name"><%= item.name %></td>
+            <td class="list-item-description"><%= item.description %></td>
+          </tr>
+        <% }); %>  
+
+      </table>    
+
+      <% include new_item %>
+
+    </div>
+
+    <% include footer %>
+
+  </body>
+</html>

@@ -9,9 +9,15 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 
 users.findOrCreate = function (id, callback) {
   console.log(id);
+<<<<<<< HEAD
   console.log(users.getByFBID(id));
   return callback("User not authenticated", this.getByFBID(id));
 };
+=======
+  console.log(users.getByFBID(id))
+  return callback("User not authenticated", this.getByFBID(id))
+}
+>>>>>>> 672f6293c2a3704df1c65546f535465f07b6008f
 
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
@@ -36,7 +42,7 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
- 
+
 module.exports = function(app){
 
   var userItems = [{name: "Elephant", description: "test description", image_link: "http://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/330px-African_Bush_Elephant.jpg"},
