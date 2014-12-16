@@ -1,4 +1,5 @@
-var pg = require('pg'), conString = process.env.DATABASE_URL;
+var domain = "https://intense-chamber-5849.herokuapp.com";
+var pg = require('pg'), conString = process.env.DATABASE_URL || "pg://postgres:password@localhost/ekonomik-db";
 var users = require('../repos/Users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
@@ -8,7 +9,7 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
-    callbackURL: "https://intense-chamber-5849.herokuapp.com/auth/facebook/callback" 
+    callbackURL: +"/auth/facebook/callback" 
   },
   function(accessToken, refreshToken, profile, done) {
     users.getByFBID({ 'facebook_id': profile.id }, 
