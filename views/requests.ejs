@@ -7,7 +7,6 @@
 
     <script>
 
-    console.log("<%= theirRequests[0].image_link %>");
 
     $(document).on('click', '.return-button', function(){
       var $that = $(this);
@@ -31,7 +30,7 @@
       $.ajax({
         url: '/requests/' + id,
         type: "PUT", 
-        data: {status: "returned"} })
+        data: {status: "loaned"} })
       .done(function(result){
         if (result){
           $that.parent('.list-accept').html("Accepted!");
@@ -47,7 +46,7 @@
   <body>
     <% include header %>
     <div class="main">
-      <h2 class="owner">Your Requests</h2>
+      <h2 class="owner">Your Requests</h2><br>
 
       <table class="list-table">
         <tr>
@@ -60,12 +59,12 @@
 
         <% myRequests.forEach(function(item) { %>
           <tr>
-            <td class="list-item-img"><img class="item-image" src='item.image_link'></td>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-description"><%= item.owner_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-return">
-              <%= (item.status == 'loaned') ? "<button class='return-button' data-id='item.id'>Return Item</a> " : "" %>
+              <%- (item.status == 'loaned') ? "<button class='return-button' data-id='" + item.id + "'>Return Item</a> " : "" %>
               <span class="return-message"></span>
             </td>
           </tr>
@@ -77,7 +76,7 @@
     </div>
 
     <div class="main">
-      <h2 class="owner">Requests For Your Stuff</h2>
+      <h2 class="owner">Requests For Your Stuff</h2><br>
 
       <table class="list-table">
         <tr>
@@ -89,12 +88,12 @@
 
         <% theirRequests.forEach(function(item) { %>
           <tr>
-            <td class="list-item-img"><img class="item-image" src='item.image_link'></td>
+            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-description"><%= item.borrower_name %></td>
             <td class="list-item-name"><%= item.status %></td>
             <td class="list-accept">
-              <%= (item.status == 'requested') ? "<button class='accept-button' data-id='item.id'>Accept Request</a>" : "" %>
+              <%- (item.status == 'requested') ? "<button class='accept-button' data-id='" + item.id + "'>Accept Request</a>" : "" %>
               <span class="accept-message"></span>
             </td>
           </tr>

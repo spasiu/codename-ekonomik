@@ -33,8 +33,9 @@ module.exports = function(app){
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback', 
-    passport.authenticate('facebook', { successRedirect: 'back', 
-                                        failureRedirect: 'back' }));
+    passport.authenticate('facebook'), function(request, response) 
+      {response.redirect(request.session.returnTo || '/')}
+      );
 
   app.get('/items', function(request, response){
     users.getByFBID(request.user[0], function(result) {
@@ -48,7 +49,6 @@ module.exports = function(app){
 
   app.get('/', function(request, response){
     if (!request.isAuthenticated()) {
-      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       response.render('index.ejs');
@@ -57,6 +57,7 @@ module.exports = function(app){
 
   app.get('/user/:id/items', function(request, response){
     if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       var userID;
@@ -75,6 +76,7 @@ module.exports = function(app){
 
   app.get('/youritems', function(request, response){
     if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       var userID;
@@ -87,17 +89,17 @@ module.exports = function(app){
 
   app.get('/requests', function(request, response){
     if (!request.isAuthenticated()) { 
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
      } else {
       var userID;
-      console.log(request.user[0])
       users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
           requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
             response.render('requests.ejs', {
-              myRequests: ownerRequests, 
-              theirRequests: borrowerRequests
+              myRequests: borrowerRequests, 
+              theirRequests: ownerRequests
             });
           });
         });
@@ -108,6 +110,7 @@ module.exports = function(app){
 
   app.post('/requests', function(request, response){
     if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else {
       var userID;
@@ -127,7 +130,8 @@ module.exports = function(app){
   });
 
   app.post('/items', function(request, response){
-        if (!request.isAuthenticated()) {
+    if (!request.isAuthenticated()) {
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     }else{
       var userID;
@@ -151,9 +155,10 @@ module.exports = function(app){
 
   app.put('/requests/:id', function(request, response){
     if (!request.isAuthenticated()) { 
+      request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
      } else {
-      requests.changeRequestStatus({id: request.body.id, status: request.body.status}, function(result){
+      requests.changeRequestStatus({id: request.params.id, status: request.body.status}, function(result){
         response.send(result);
       });
      }
