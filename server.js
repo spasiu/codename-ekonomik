@@ -3,7 +3,10 @@ var ejs = require('ejs'),
     cookieParser = require('cookie-parser'),
     expressSession = require('express-session'),
     passport = require('passport'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    livereload = require('express-livereload');
+
+livereload(app, config={});
 
 passport.serializeUser(function(user, done) {
   done(null, user);
