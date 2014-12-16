@@ -8,7 +8,7 @@ var passport = require('passport'), FacebookStrategy = require('passport-faceboo
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
     clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
-    callbackURL: "http://localhost:3000/auth/facebook/callback" 
+    callbackURL: "https://intense-chamber-5849.herokuapp.com/auth/facebook/callback" 
   },
   function(accessToken, refreshToken, profile, done) {
     users.getByFBID({ 'facebook_id': profile.id }, 

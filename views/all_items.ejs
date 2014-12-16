@@ -3,11 +3,10 @@
   <head>
     <script src="/lib/jquery-2.1.1.min.js"></script>
     <link type="text/css" href="css/style.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script>
 
-    console.log('<%= currentUser.id %>');
     $(document).on('click', '.request-button', function(){
       var $that = $(this);
       var id = $that.data('id');
@@ -26,7 +25,7 @@
       });
     });
 
-    $(document).on('click', 'tr.item-row', function(){
+    $(document).on('click', '.item-row', function(){
       var id = $(this).data('id');
       window.location.href = "/items/" + id;
     });
@@ -49,11 +48,11 @@
 
         <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
 
-          <tr class="item-row" data-id="<%= item.id %>">
-            <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
-            <td class="list-item-name"><%= item.name %></td>
-            <td class="list-item-name"><%= item.owner_name %></td>
-            <td class="list-item-description"><%= item.description %></td>
+          <tr>
+            <td class="list-item-img item-row" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name item-row" data-id="<%= item.id %>"><%= item.name %></td>
+            <td class="list-item-name item-row" data-id="<%= item.id %>"><%= item.owner_name %></td>
+            <td class="list-item-description item-row" data-id="<%= item.id %>"><%= item.description %></td>
             <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
         <% } }); %>  

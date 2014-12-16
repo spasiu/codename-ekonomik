@@ -3,8 +3,28 @@
   <head>
     <script src="/lib/jquery-2.1.1.min.js"></script>
     <link type="text/css" href="/css/style.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   </head>
+  <script>
+    $(document).on('click', '.request-button', function(){
+      var $that = $(this);
+      var id = $that.data('id');
+      var owner = $that.data('owner');
+      var data = {
+        id: id,
+        owner: owner
+      }
+      $.post('/requests', data, function(result){
+        if (result){
+          $that.parent('.list-request').html("Request made.");
+        }
+        else {
+          $that.next('.request-message').html("Request could not be made!")
+        }
+      });
+    });
+  </script>
+
 
   <body>
      <script>
