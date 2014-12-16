@@ -1,3 +1,0 @@
-app.configure(function() {
-
-});
