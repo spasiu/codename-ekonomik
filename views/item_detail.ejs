@@ -53,17 +53,20 @@
       <h3 class="owner">from <%= item.owner_name %></h3><br>
       <div class="item-about-extend">
         <div><%= item.description %></div>
-        <br>
-        <button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">
-          Request
-        </button>
-        <span class="request-message"></span>
+        
+        <% if(currentUser.id != item.owner) { %>
+          <br>
+          <button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">
+            Request
+          </button>
+          <span class="request-message"></span>
+        <% } %>
       </div>
     </div>
 
 
     <div class="comments">
-      <div class="fb-comments" data-href="https://intense-chamber-5849.herokuapp.com/items/:id" data-numposts="5" data-colorscheme="light"></div>
+      <div class="fb-comments" data-href="https://intense-chamber-5849.herokuapp.com/items/<%= item.id %>" data-numposts="5" data-colorscheme="light"></div>
     </div>
 
     <% include footer %>

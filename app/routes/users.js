@@ -29,7 +29,6 @@ passport.use(new FacebookStrategy({
 ));
 
 module.exports = function(app){
-
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
   app.get('/auth/facebook/callback', 
@@ -44,6 +43,13 @@ module.exports = function(app){
     } else {
       users.getByFBID(request.user[0], function(result) {
       userID = result[0].id;
+
+      // FB.api(
+      //   "/v2.0/"+userID+"/friends?fields=id",
+      //   function(result) {
+      //     console.log(result.data[0].id)
+      //   })
+
       var pageOwner = result[0];
       items.getAll(function(result){
         response.render('all_items.ejs', {items: result, currentUser: pageOwner});
@@ -57,10 +63,13 @@ module.exports = function(app){
       request.session.returnTo = request.path;
       response.redirect('/auth/facebook');
     } else { 
-      var itemID = request.params['id'];
-      items.getById({id: itemID}, function(result) {
-        response.render('item_detail.ejs', {item: result[0]});
-      })
+      users.getByFBID(request.user[0], function(result) {
+        var pageOwner = result[0];
+        var itemID = request.params['id'];
+        items.getById({id: itemID}, function(result) {
+          response.render('item_detail.ejs', {item: result[0], currentUser: pageOwner});
+        });
+      });
     }
   });
 
