@@ -113,8 +113,8 @@ module.exports = function(app){
       var userID;
       users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
-        var itemID = request.params['id'];
-        var ownerID = request.params['owner'];
+        var itemID = request.body['id'];
+        var ownerID = request.body['owner'];
         requests.newRequest({
           item_id: itemID,
           borrower_id: userID,
@@ -130,13 +130,12 @@ module.exports = function(app){
         if (!request.isAuthenticated()) {
       response.redirect('/auth/facebook');
     }else{
-      console.log("A PARAM!", request.body, "END PARAM!");
       var userID;
       users.getByFBID(request.user[0], function(result){
         userID = result[0].id;
-        var description = request.params['description'],
-        name = request.params['name'],
-        image = request.params['image_link'];
+        var description = request.body['description'],
+        name = request.body['name'],
+        image = request.body['image_link'];
         var newItem = {
           description: description, 
           name: name, 
@@ -154,7 +153,7 @@ module.exports = function(app){
     if (!request.isAuthenticated()) { 
       response.redirect('/auth/facebook');
      } else {
-      requests.changeRequestStatus({id: request.params.id, status: request.params.status}, function(result){
+      requests.changeRequestStatus({id: request.body.id, status: request.body.status}, function(result){
         response.send(result);
       });
      }
