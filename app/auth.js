@@ -1,14 +1,9 @@
 module.exports = function(pg, conString){
-//   var auth = function(email, password, callback){
-//     // if()
-//   };
-//   return auth;
-
   var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
   passport.use(new FacebookStrategy({
       clientID: 1511022942514049,
-      clientSecret: fa6df13e2141d4fd138c1eb769d005a0,
+      clientSecret: "fa6df13e2141d4fd138c1eb769d005a0",
       callbackURL: "http://localhost:3000/auth/facebook/callback" // Note: For security reasons, the redirection URL must reside on the same host that is registered with Facebook.
     },
     function(accessToken, refreshToken, profile, done) {
@@ -28,4 +23,5 @@ module.exports = function(pg, conString){
       });
     }
   ));
+  return { passport: passport };
 };

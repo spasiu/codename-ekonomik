@@ -64,7 +64,16 @@ module.exports = function(pg,conString){
       WHERE id=$1; \
     ";
     dbQuery(callback, queryString, [params.id]);
-  }
+  };
+
+  var getByFBIDFn = function(params, callback){
+    var queryString = "\
+      SELECT * \
+      FROM users \
+      WHERE facebook_id=$1; \
+    ";
+    dbQuery(callback, queryString, [params.facebook_id]);
+  };
 
   var getByEmailFn = function(params, callback){
     var queryString = "\
@@ -84,6 +93,7 @@ module.exports = function(pg,conString){
     newUser     : newUserFn,
     getAll      : getAllFn,
     createTable : createTableFn,
-    dropTable   : dropTableFn
+    dropTable   : dropTableFn,
+    getByFBID   : getByFBIDFn
   }
 };
