@@ -55,7 +55,7 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     } else {
       var userID;
-      var pageID = params['id'];
+      var pageID = request.params['id'];
       users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         items.getAllForUserId({owner: pageID},function(result){
@@ -105,8 +105,8 @@ module.exports = function(app){
       var userID;
       users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
-        var itemID = params['id'];
-        var ownerID = params['owner'];
+        var itemID = request.params['id'];
+        var ownerID = request.params['owner'];
         requests.newRequest({
           item_id: itemID,
           borrower_id: userID,
@@ -125,9 +125,9 @@ module.exports = function(app){
       var userID;
       users.getFBID(request.user[0], function(result){
         userID = result[0].id;
-        var description = params['description'],
-        name = params['name'],
-        image = params['image'],
+        var description = request.params['description'],
+        name = request.params['name'],
+        image = request.params['image'],
         newItem = {
           description: description, 
           name: name, 
@@ -145,7 +145,7 @@ module.exports = function(app){
     if (!request.isAuthenticated()) { 
       response.redirect('/auth/facebook');
      } else {
-      requests.changeRequestStatus({id: params.id, status: params.status}, function(result){
+      requests.changeRequestStatus({id: request.params.id, status: request.params.status}, function(result){
         response.send(result);
       });
      }
