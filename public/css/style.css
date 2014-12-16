@@ -128,8 +128,8 @@ footer {
   cursor: pointer;
 }
 
-tr td.item-row:hover {
-  background-color: #222 !important;
+item-row:hover {
+  background-color: #444 !important;
   color: white;
 }
 

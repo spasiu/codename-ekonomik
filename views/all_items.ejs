@@ -25,7 +25,7 @@
       });
     });
 
-    $(document).on('click', '.item-row', function(){
+    $(document).on('click', '.item-cell', function(){
       var id = $(this).data('id');
       window.location.href = "/items/" + id;
     });
@@ -48,11 +48,11 @@
 
         <% items.forEach(function(item) { if(currentUser.id == item.owner) { } else { %>
 
-          <tr>
-            <td class="list-item-img item-row" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>
-            <td class="list-item-name item-row" data-id="<%= item.id %>"><%= item.name %></td>
-            <td class="list-item-name item-row" data-id="<%= item.id %>"><%= item.owner_name %></td>
-            <td class="list-item-description item-row" data-id="<%= item.id %>"><%= item.description %></td>
+          <tr class="item-row">
+            <td class="list-item-img item-cell" data-id="<%= item.id %>"><img class="item-image" src='<%= item.image_link %>'></td>
+            <td class="list-item-name item-cell" data-id="<%= item.id %>"><%= item.name %></td>
+            <td class="list-item-name item-cell" data-id="<%= item.id %>"><%= item.owner_name %></td>
+            <td class="list-item-description item-cell" data-id="<%= item.id %>"><%= item.description %></td>
             <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
         <% } }); %>  
