@@ -3,7 +3,8 @@ body {
   font: 16px serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(#444, #000);
+  background: linear-gradient(#000, #222);
+  text-align: center;
 }
 
 .loginHeader {
@@ -11,6 +12,25 @@ body {
   background-image:url('../img/karl.jpg');
 }
 
+.header {
+  text-align: left;
+  padding: 10px;
+  font: 25px serif;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: white;
+  width: 300px;
+  line-height:25px !important;
+}
+
+.header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header a:hover {
+  text-decoration: underline;
+}
 
 .loginHeadline {
   width: 100%;
@@ -23,6 +43,22 @@ body {
   margin: 0;
   padding: 0;
   line-height: 95px;
+}
+
+.loginHeadline span {
+  font-size:70px;
+  line-height: 50px;
+  letter-spacing: -5px;
+}
+
+.loginHeadline .smaller {
+  font-size:40px;
+  line-height: 30px;
+  letter-spacing: -2px;
+}
+
+.loginHeadline .smaller a:hover {
+  text-decoration: underline;
 }
 
 h3 {
