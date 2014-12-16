@@ -35,7 +35,14 @@ module.exports = function(app){
       Users.getByFBID(request.user, function(result) {
         userID = result.id;
         Requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
-          response.render('requests.ejs', { myRequests: ownerRequests })
+          Requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
+            response.render('requests.ejs', {
+              requests: {
+                myRequests: ownerRequests, 
+                theirRequests: borrowerRequests
+              }
+            });
+          });
         });
       })
      }
