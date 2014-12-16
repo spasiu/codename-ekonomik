@@ -6,6 +6,8 @@ var ejs = require('ejs'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000;
 
+
+
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
