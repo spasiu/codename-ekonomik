@@ -63,19 +63,44 @@ module.exports = function(app){
           item_id: itemID,
           borrower_id: userID,
           owner_id: ownerID,
-        }, function(){
-
+        }, function(result){
+          response.send(result);
         });
       });
     }
   });
 
   app.post('/items', function(request, response){
-
+        if (!request.isAuthenticated()) {
+      response.redirect('/auth/facebook');
+    }else{
+      var userID;
+      Users.getFBID(request.user, function(result){
+        userID = result.id;
+        var description = params['description'],
+        name = params['name'],
+        image = params['image'],
+        newItem = {
+          description: description, 
+          name: name, 
+          image_link: image, 
+          owner: userID
+        };
+        Items.createItem(newItem, function(){
+          response.redirect('/items');
+        });
+      });
+    }
   });
 
   app.put('/requests/:id', function(request, response){
-    
+    if (!request.isAuthenticated()) { 
+      response.redirect('/auth/facebook');
+     } else {
+      Requests.changeRequestStatus({id: params.id, status: params.status}, function(result){
+        response.send(result);
+      });
+     }
   });
 
 };

@@ -8,8 +8,10 @@
     $(document).on('click', '.request-button', function(){
       var $that = $(this);
       var id = $that.data('id');
+      var owner = $that.data('owner');
       var data = {
-        id: id
+        id: id,
+        owner: owner
       }
       $.post('/requests', data, function(result){
         if (result){
@@ -42,7 +44,7 @@
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-description"><%= item.description %></td>
-            <td class="list-request"><button data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
+            <td class="list-request"><button data-owner="<%= item.owner %>" data-id="<%= item.id %>" class="request-button">Request</button><span class="request-message"></span></td>
           </tr>
         <% }); %>  
 
