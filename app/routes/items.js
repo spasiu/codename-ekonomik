@@ -63,7 +63,9 @@ module.exports = function(app){
           item_id: itemID,
           borrower_id: userID,
           owner_id: ownerID,
-        }, function(){});
+        }, function(result){
+          response.send(result);
+        });
       });
     }
   });
@@ -73,7 +75,13 @@ module.exports = function(app){
   });
 
   app.put('/requests/:id', function(request, response){
-    
+    if (!request.isAuthenticated()) { 
+      response.redirect('/auth/facebook');
+     } else {
+      Requests.changeRequestStatus({id: params.id, status: params.status}, function(result){
+        response.send(result);
+      });
+     }
   });
 
 };
