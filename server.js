@@ -20,7 +20,7 @@ var app = express();
 
 app.use(express.static('public'));
 app.use(cookieParser());
-app.use(express.bodyParser());
+app.use(bodyParser());
 app.use(expressSession({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
