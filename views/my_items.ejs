@@ -26,7 +26,7 @@
   <body>
     <% include header %>
     <div class="main">
-      <h2 class="owner">My Items</h2>
+      <h2 class="owner"><%= user.name %>'s Items</h2>
       <% include switch_views %>
 
       <table class="list-table">
@@ -34,7 +34,9 @@
           <th>Image</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Where is it?</th>
+          <% if (<%= user.id %> == <%= currentUser.id %>){ %>
+            <th>Where is it?</th>
+          <% } %>
         </tr>
 
         <% items.forEach(function(item) { %>
@@ -42,7 +44,9 @@
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
             <td class="list-item-description"><%= item.description %></td>
-            <td class="list-item-description"><%= item.description %></td>
+            <% if (<%= user.id %> == <%= currentUser.id %>){ %>
+              <td class="list-item-name"><%= item.resides_at_name %></td>
+            <% } %>
           </tr>
         <% }); %>  
 

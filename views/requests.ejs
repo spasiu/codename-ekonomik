@@ -59,63 +59,108 @@
   </body>
 </html>
 
+<!DOCTYPE html>
 <html>
   <head>
     <link type="text/css" href="css/style.css" rel="stylesheet">
-    <link type="text/css" href="css/list.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <script>
+    $(document).on('click', '.return-button', function(){
+      var $that = $(this);
+      var id = $that.data('id');
+      $.ajax({
+        url: '/requests/' + id,
+        type: "PUT", 
+        data: {status: "returned"} })
+      .done(function(result){
+        if (result){
+          $that.parent('.list-return').html("Return made.");
+        }
+        else {
+          $that.next('.return-message').html("Return could not be made!")
+        }
+      });
+    });
+    $(document).on('click', '.accept-button', function(){
+      var $that = $(this);
+      var id = $that.data('id');
+      $.ajax({
+        url: '/requests/' + id,
+        type: "PUT", 
+        data: {status: "returned"} })
+      .done(function(result){
+        if (result){
+          $that.parent('.list-accept').html("Accepted!");
+        }
+        else {
+          $that.next('.accept-message').html("Accept failed.")
+        }
+      });
+    });
+    </script>
   </head>
 
   <body>
     <% include header %>
     <div class="main">
-
-      <h2 class="owner">Requests for Your Items</h2>
+      <h2 class="owner">Your Requests</h2>
       <% include switch_views %>
 
       <table class="list-table">
         <tr>
           <th>Image</th>
-          <th>Name</th>
-          <th>Description</th>
+          <th>Item Name</th>
+          <th>Owner Name</th>
+          <th>Request Status</th>
+          <th>Actions</th>
         </tr>
 
-        <% userRequests.forEach(function(item) { %>
+        <% myRequests.forEach(function(item) { %>
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
-            <td class="list-item-description"><%= item.description %></td>
+            <td class="list-item-description"><%= item.owner_name %></td>
+            <td class="list-item-name"><%= item.status %></td>
+            <td class="list-return">
+              <%= (item.status == 'loaned') ? "<button class='return-button' data-id='<%= item.id %>'>Return Item</a>" %>
+              <span class="return-message"></span>
+            </td>
           </tr>
         <% }); %>  
 
       </table>    
-
-      <% include new_item %>
+      <br>
 
     </div>
 
-        <div class="main">
-
-      <h2 class="owner">Requests You've Made</h2>
+    <div class="main">
+      <h2 class="owner">Requests For Your Stuff</h2>
       <% include switch_views %>
 
       <table class="list-table">
         <tr>
           <th>Image</th>
-          <th>Name</th>
-          <th>Description</th>
+          <th>Item Name</th>
+          <th>Requester Name</th>
+          <th>Request Status</th>
         </tr>
 
-        <% borrowed.forEach(function(item) { %>
+        <% theirRequests.forEach(function(item) { %>
           <tr>
             <td class="list-item-img"><img class="item-image" src='<%= item.image_link %>'></td>
             <td class="list-item-name"><%= item.name %></td>
-            <td class="list-item-description"><%= item.description %></td>
+            <td class="list-item-description"><%= item.borrower_name %></td>
+            <td class="list-item-name"><%= item.status %></td>
+            <td class="list-accept">
+              <%= (item.status == 'requested') ? "<button class='accept-button' data-id='<%= item.id %>'>Accept Request</a>" %>
+              <span class="accept-message"></span>
+            </td>
           </tr>
         <% }); %>  
 
       </table>    
-
-      <% include new_item %>
+      <br>
 
     </div>
 
@@ -123,3 +168,4 @@
 
   </body>
 </html>
+

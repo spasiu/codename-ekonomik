@@ -76,7 +76,7 @@ module.exports = function(pg,conString){
     var queryString = "\
       SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
         items.description, items.name, items.resides_at, items.image_link, \
-        users.name, users.email \
+        users.name AS borrower_name, users.email \
       FROM requests \
       INNER JOIN items \
       ON requests.item_id = items.id \
@@ -91,7 +91,7 @@ module.exports = function(pg,conString){
     var queryString = "\
       SELECT requests.id, requests.status, requests.owner_id, requests.item_id, requests.borrower_id, \
         items.description, items.name, items.resides_at, items.image_link, \
-        users.name, users.email \
+        users.name AS owner_name, users.email \
       FROM requests \
       INNER JOIN items \
       ON requests.item_id = items.id \
