@@ -56,7 +56,7 @@ module.exports = function(app){
     } else {
       var userID;
       var pageID = params['id'];
-      users.getByFBID(request.user, function(result) {
+      users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         items.getAllForUserId({owner: pageID},function(result){
           response.render('user_items.ejs', {items: result, user: {id: pageID}, currentUser: {id: userID}});
@@ -70,7 +70,7 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     } else {
       var userID;
-      users.getByFBID(request.user, function(result) {
+      users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         response.redirect('/user/' + userID + '/items');
       });
@@ -82,8 +82,8 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
      } else {
       var userID;
-      console.log(request.user)
-      users.getByFBID(request.user, function(result) {
+      console.log(request.user[0])
+      users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         requests.getByOwnerId({owner_id: userID}, function(ownerRequests){
           requests.getByBorrowerId({borrower_id: userID}, function(borrowerRequests){
@@ -103,7 +103,7 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     } else {
       var userID;
-      users.getByFBID(request.user, function(result) {
+      users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
         var itemID = params['id'];
         var ownerID = params['owner'];
@@ -123,7 +123,7 @@ module.exports = function(app){
       response.redirect('/auth/facebook');
     }else{
       var userID;
-      users.getFBID(request.user, function(result){
+      users.getFBID(request.user[0], function(result){
         userID = result[0].id;
         var description = params['description'],
         name = params['name'],
