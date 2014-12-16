@@ -1,5 +1,3 @@
-
-// var pg = require('pg'), conString = "postgres://something";
 module.exports = function(pg,conString){
 
   var dbQuery = function(callback, queryString, array){

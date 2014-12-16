@@ -1,4 +1,4 @@
-var pg = require('pg'), conString = "pg://postgres:password@localhost/ekonomik-db";
+var pg = require('pg'), conString = process.env.DATABASE_URL;
 var users = require('../repos/users.js')(pg, conString);
 var items = require('../repos/Items.js')(pg, conString);
 var requests = require('../repos/Requests.js')(pg, conString);
