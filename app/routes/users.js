@@ -8,11 +8,19 @@ var requests = require('../repos/Requests.js')(pg, conString);
 var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
 
 users.findOrCreate = function (id, callback) {
-  console.log(id);
-  console.log(users.getByFBID(id))
-  return callback("User not authenticated", this.getByFBID(id))
+  this.getByFBID(id, callback);
 }
 
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+  users.findByFBID(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 passport.use(new FacebookStrategy({
     clientID: 1511022942514049,
@@ -21,7 +29,7 @@ passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     users.findOrCreate({ 'facebook_id': profile.id }, 
-      function(err, user) {
+      function(user) {
         // console.log(user)
       if (!user) {
         user = users.newUser({
@@ -37,6 +45,8 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
+
+
  
 module.exports = function(app){
 
