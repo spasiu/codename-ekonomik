@@ -58,7 +58,7 @@ module.exports = function(app){
       var pageID = request.params['id'];
       users.getByFBID(request.user[0], function(result) {
         userID = result[0].id;
-        items.getById({id: pageID}, function(result){
+        users.getById({id: pageID}, function(result){
           var pageOwner = result[0];
           items.getAllForUserId({owner: pageID},function(result){
             response.render('user_items.ejs', {items: result, user: pageOwner, currentUser: {id: userID}});
