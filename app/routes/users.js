@@ -13,16 +13,17 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     users.getByFBID({ 'facebook_id': profile.id }, 
       function(user) {
-      if (!user) {
+        console.log(user);
+      if (user.length == 0) {
+        console.log(profile);
         users.newUser({
           name: profile.displayName,
-          email: profile.emails[0].value,
-          facebook_id: profile._json
+          email: "fake@email.com",
+          facebook_id: profile._json.id
         });
       } else if (user) {
         return done(null, user);
       }
-      if (err) { return done(err); }
     });
   }
 ));

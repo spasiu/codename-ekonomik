@@ -20,8 +20,7 @@ module.exports = function(pg,conString){
         id SERIAL PRIMARY KEY, \
         facebook_id TEXT, \
         name TEXT, \
-        email TEXT, \
-        password TEXT \
+        email TEXT \
       );\
     ";
     dbQuery(callback, queryString, []);
@@ -42,11 +41,11 @@ module.exports = function(pg,conString){
 
   var newUserFn =  function(params, callback){
     var queryString = " \
-      INSERT INTO users (name, facebook_id, email, password) \
-      VALUES ($1, $2, $3, $4) \
+      INSERT INTO users (name, facebook_id, email) \
+      VALUES ($1, $2, $3) \
       RETURNING id; \
     ";
-    dbQuery(callback, queryString, [params.name, params.facebook_id, params.email, params.password]);
+    dbQuery(callback, queryString, [params.name, params.facebook_id, params.email]);
   }
 
   var deleteUserFn = function(params, callback){
