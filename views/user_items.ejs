@@ -6,25 +6,42 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <script>
-    $(document).on('click', '.request-button', function(){
-      var $that = $(this);
-      var id = $that.data('id');
-      var data = {
-        id: id
-      }
-      $.post('/requests', data, function(result){
-        if (result){
-          $that.parent('.list-request').html("Request made.");
+      $(document).on('click', '.request-button', function(){
+        var $that = $(this);
+        var id = $that.data('id');
+        var data = {
+          id: id
         }
-        else {
-          $that.next('.request-message').html("Request could not be made!")
-        }
+        $.post('/requests', data, function(result){
+          if (result){
+            $that.parent('.list-request').html("Request made.");
+          }
+          else {
+            $that.next('.request-message').html("Request could not be made!")
+          }
+        });
       });
-    });
     </script>
   </head>
 
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1511022942514049',
+          xfbml      : true,
+          version    : 'v2.2'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+  </script>
     <% include header %>
     <div class="main">
       <h2 class="owner"><%= user.name %>'s Items</h2><br>
@@ -55,6 +72,11 @@
     
       <br>
 
+    </div>
+
+
+    <div class="comments">
+      <div class="fb-comments" data-href="http://localhost:3000/user/:id/items" data-numposts="5" data-colorscheme="light"></div>
     </div>
 
     <% include footer %>
