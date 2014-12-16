@@ -63,13 +63,15 @@ module.exports = function(app){
           item_id: itemID,
           borrower_id: userID,
           owner_id: ownerID,
-        }, function(){});
+        }, function(){
+
+        });
       });
     }
   });
 
   app.post('/items', function(request, response){
-    
+
   });
 
   app.put('/requests/:id', function(request, response){
