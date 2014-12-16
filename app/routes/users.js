@@ -37,6 +37,7 @@ module.exports = function(app){
 
   app.get('/items', function(request, response){
     items.getAll(function(result){
+      console.log(request.user)
       response.render('all_items.ejs', {items: result});
     });
   });
