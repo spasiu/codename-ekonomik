@@ -136,3 +136,7 @@ footer {
 .list-request, .list-return, .list-accept {
   text-align: center;
 }
+
+th {
+  text-decoration: underline;
+}
